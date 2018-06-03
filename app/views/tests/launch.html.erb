@@ -1,0 +1,35 @@
+<h1> <%= @test.library.name %> </h1>
+
+
+<h1> <%= @test.user.email %></h1>
+
+
+<% unless @word %>
+    <h5>您已完成全部测试。</h5>
+<% else %>
+
+
+    <div class="row">
+
+      <div class="col-md-6 col-sm-12">
+        <h1><%= @word.meaning %></h1>
+
+      </div>
+
+      <div class="col-md-6 col-sm-12">
+
+        <%= form_with(model: test_record, local: true) do |form| %>
+
+
+            <div class="form-group">
+              <label>解释</label>
+              <%= form.text_field :meaning, class: 'form-control', required: true %>
+            </div>
+            
+        <% end %>
+
+      </div>
+    </div>
+<% end %>
+
+

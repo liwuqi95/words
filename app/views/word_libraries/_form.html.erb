@@ -11,6 +11,21 @@
     </div>
   <% end %>
 
+
+
+    <div class="form-group">
+      <label>教材</label>
+      <%= collection_select(:word_library, :library_id, Library.all, :id, :name, {}, {class: 'form-control'}) %>
+    </div>
+
+
+    <div class="form-group">
+      <label>单词</label>
+      <%= collection_select(:word_library, :word_id, Word.all, :id, :word, {}, {class: 'form-control'}) %>
+    </div>
+
+
+
   <div class="actions">
     <%= form.submit %>
   </div>

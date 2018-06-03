@@ -10,5 +10,12 @@
   <%= @library.grade %>
 </p>
 
+<p>
+  <strong>Words:</strong>
+  <% @library.words.each do |word| %>
+      <%= word.word %>
+  <% end %>
+</p>
+
 <%= link_to 'Edit', edit_library_path(@library) %> |
 <%= link_to 'Back', libraries_path %>

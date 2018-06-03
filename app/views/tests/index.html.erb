@@ -7,7 +7,7 @@
     <tr>
       <th>Library</th>
       <th>User</th>
-      <th colspan="3"></th>
+      <th colspan="4"></th>
     </tr>
   </thead>
 
@@ -15,10 +15,11 @@
     <% @tests.each do |test| %>
       <tr>
         <td><%= test.library.name %></td>
-        <td><%= test.user_id %></td>
-        <td><%= link_to 'Show', test %></td>
-        <td><%= link_to 'Edit', edit_test_path(test) %></td>
-        <td><%= link_to 'Destroy', test, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= test.user.email %></td>
+        <td><%= link_to '启动', launch_test_path(test) %></td>
+        <td><%= link_to '详细信息', test %></td>
+        <td><%= link_to '编辑', edit_test_path(test) %></td>
+        <td><%= link_to '删除', test, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

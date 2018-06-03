@@ -1,5 +1,5 @@
 class TestsController < ApplicationController
-  before_action :set_test, only: [:show, :edit, :update, :destroy]
+  before_action :set_test, only: [:show, :edit, :update, :destroy, :launch]
 
   # GET /tests
   # GET /tests.json
@@ -10,6 +10,18 @@ class TestsController < ApplicationController
   # GET /tests/1
   # GET /tests/1.json
   def show
+
+  end
+
+  def launch
+
+    @test.library.words.each do |word|
+      unless @test.test_records.find_by word: word
+        @word = word
+        break
+      end
+    end
+
   end
 
   # GET /tests/new
@@ -28,11 +40,11 @@ class TestsController < ApplicationController
 
     respond_to do |format|
       if @test.save
-        format.html { redirect_to @test, notice: 'Test was successfully created.' }
-        format.json { render :show, status: :created, location: @test }
+        format.html {redirect_to @test, notice: 'Test was successfully created.'}
+        format.json {render :show, status: :created, location: @test}
       else
-        format.html { render :new }
-        format.json { render json: @test.errors, status: :unprocessable_entity }
+        format.html {render :new}
+        format.json {render json: @test.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -42,11 +54,11 @@ class TestsController < ApplicationController
   def update
     respond_to do |format|
       if @test.update(test_params)
-        format.html { redirect_to @test, notice: 'Test was successfully updated.' }
-        format.json { render :show, status: :ok, location: @test }
+        format.html {redirect_to @test, notice: 'Test was successfully updated.'}
+        format.json {render :show, status: :ok, location: @test}
       else
-        format.html { render :edit }
-        format.json { render json: @test.errors, status: :unprocessable_entity }
+        format.html {render :edit}
+        format.json {render json: @test.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -56,19 +68,19 @@ class TestsController < ApplicationController
   def destroy
     @test.destroy
     respond_to do |format|
-      format.html { redirect_to tests_url, notice: 'Test was successfully destroyed.' }
-      format.json { head :no_content }
+      format.html {redirect_to tests_url, notice: 'Test was successfully destroyed.'}
+      format.json {head :no_content}
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_test
-      @test = Test.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_test
+    @test = Test.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def test_params
-      params.require(:test).permit(:library_id, :user_id)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def test_params
+    params.require(:test).permit(:library_id, :user_id)
+  end
 end

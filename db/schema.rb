@@ -10,11 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180603054433) do
+ActiveRecord::Schema.define(version: 20180603093949) do
 
   create_table "libraries", force: :cascade do |t|
     t.string "name"
     t.integer "grade"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "test_records", force: :cascade do |t|
+    t.integer "test_id"
+    t.integer "word_id"
+    t.boolean "result"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
