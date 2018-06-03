@@ -3,6 +3,6 @@ class Word < ApplicationRecord
   has_many :libraries, through: :word_libraries
 
 
-  validates :word, presence: true
+  validates :word, presence: true, uniqueness: true
   validates :meaning, presence: true
 end
