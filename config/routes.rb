@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :tests
   resources :libraries
   resources :words
   resources :word_libraries

@@ -14,7 +14,7 @@
       <tr>
         <td><%= word_library.word.word %></td>
         <td><%= link_to word_library.library.name,word_library.library %></td>
-        
+
         <td><%= link_to 'Show', word_library %></td>
         <td><%= link_to 'Edit', edit_word_library_path(word_library) %></td>
         <td><%= link_to 'Destroy', word_library, method: :delete, data: { confirm: 'Are you sure?' } %></td>
