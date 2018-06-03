@@ -69,6 +69,6 @@ class TestRecordsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def test_record_params
-      params.require(:test_record).permit(:test_id, :word_id, :result)
+      params.require(:test_record).permit(:test_id, :word_id, :result, :input)
     end
 end

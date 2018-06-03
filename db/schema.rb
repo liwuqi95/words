@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20180603093949) do
     t.integer "test_id"
     t.integer "word_id"
     t.boolean "result"
+    t.string "input"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

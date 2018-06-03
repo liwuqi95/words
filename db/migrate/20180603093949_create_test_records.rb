@@ -5,6 +5,8 @@ class CreateTestRecords < ActiveRecord::Migration[5.1]
       t.integer :word_id
       t.boolean :result
 
+      t.string :input
+
       t.timestamps
     end
   end

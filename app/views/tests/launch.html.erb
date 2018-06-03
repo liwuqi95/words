@@ -1,4 +1,4 @@
-<h1> <%= @test.library.name %> </h1>
+<h1 class="text-center"> <%= @test.library.name %> </h1>
 
 
 <h1> <%= @test.user.email %></h1>
@@ -12,21 +12,29 @@
     <div class="row">
 
       <div class="col-md-6 col-sm-12">
-        <h1><%= @word.meaning %></h1>
+        <h1 ><%= @word.meaning %></h1>
 
       </div>
 
       <div class="col-md-6 col-sm-12">
 
-        <%= form_with(model: test_record, local: true) do |form| %>
+        <%= form_for TestRecord.new do |f| %>
 
 
             <div class="form-group">
-              <label>解释</label>
-              <%= form.text_field :meaning, class: 'form-control', required: true %>
+              <label>拼写</label>
+              <%= f.text_field :input, class:'form-control', required: true  %>
             </div>
 
+
+            <%= f.hidden_field :test_id, value: @test.id%>
+            <%= f.hidden_field :word_id, value: @word.id%>
+
+            <%= submit_tag '提交',class:'btn btn-success'%>
+
         <% end %>
+
+
 
       </div>
     </div>

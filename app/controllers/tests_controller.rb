@@ -40,7 +40,7 @@ class TestsController < ApplicationController
 
     respond_to do |format|
       if @test.save
-        format.html {redirect_to @test, notice: 'Test was successfully created.'}
+        format.html {redirect_ @test, notice: 'Test was successfully created.'}
         format.json {render :show, status: :created, location: @test}
       else
         format.html {render :new}
