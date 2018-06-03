@@ -12,22 +12,23 @@
   <% end %>
 
 
-
+  <div class="box-body">
     <div class="form-group">
       <label >单词</label>
-      <%= form.text_field :word, class:'form-control' , required: true %>
+      <%= form.text_field :word, class:'form-control', required: true, placeholder:'请输入单词' %>
     </div>
 
     <div class="form-group">
       <label >解释</label>
-      <%= form.text_field :meaning, class:'form-control', required: true  %>
+      <%= form.text_field :meaning, class:'form-control', required: true, placeholder:'请输入单词含义'  %>
     </div>
 
+  </div>
+  <!-- /.box-body -->
 
-
-
-
-    <%= form.submit '提交', class:'btn btn-primary'%>
+  <div class="box-footer text-center">
+    <%= form.submit '提交', class:'btn btn-primary btn-block'%>
+  </div>
 
 
 <% end %>
