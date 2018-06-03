@@ -1,7 +1,13 @@
-<p id="notice"><%= notice %></p>
+
 
 
 <h1><%= '单词列表' %></h1>
+
+<% if notice %>
+    <div class="alert alert-success" role="alert">
+      <%= notice %>
+    </div>
+<% end %>
 
 <table class="table table-striped">
   <thead>
