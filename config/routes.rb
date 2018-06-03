@@ -5,12 +5,20 @@ Rails.application.routes.draw do
 
   root to: 'home#index'
 
-  resources :tests
+
   get '/tests/launch/:id', to: 'tests#launch', as: 'launch_test'
+  resources :tests
+
 
 
   resources :libraries
+
+
+  get '/words/list', to: 'words#list', as: 'list_words'
   resources :words
+
+
+
   resources :word_libraries
 
 

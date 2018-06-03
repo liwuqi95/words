@@ -7,6 +7,10 @@ class WordsController < ApplicationController
     @words = Word.all
   end
 
+  def list
+    @words = Word.all
+  end
+
   # GET /words/1
   # GET /words/1.json
   def show
