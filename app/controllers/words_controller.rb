@@ -33,7 +33,7 @@ class WordsController < ApplicationController
 
     respond_to do |format|
       if @word.save
-        format.html { redirect_to words_path, notice: '成功添加单词.' }
+        format.html { redirect_to list_words_path, notice: '成功添加单词.' }
         format.json { render :show, status: :created, location: @word }
       else
         format.html { render :new }
@@ -47,7 +47,7 @@ class WordsController < ApplicationController
   def update
     respond_to do |format|
       if @word.update(word_params)
-        format.html { redirect_to words_path, notice: '成功修改单词.' }
+        format.html { redirect_to list_words_path, notice: '成功修改单词.' }
         format.json { render :show, status: :ok, location: @word }
       else
         format.html { render :edit }

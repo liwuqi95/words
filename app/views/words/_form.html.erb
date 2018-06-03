@@ -1,34 +1,95 @@
 <%= form_with(model: word, local: true) do |form| %>
-  <% if word.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(word.errors.count, "error") %> prohibited this word from being saved:</h2>
+    <div class="row">
+      <% if word.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(word.errors.count, "error") %> prohibited this word from being saved:</h2>
 
-      <ul>
-      <% word.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+            <ul>
+              <% word.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
       <% end %>
-      </ul>
+
+
+      <div class="col-md-6 col-sm-12">
+        <div class="box box-primary">
+          <div class="box-header with-border">
+            <h3 class="box-title">单词信息</h3>
+          </div>
+          <!-- /.box-header -->
+          <!-- form start -->
+
+          <div class="box-body">
+            <div class="form-group">
+              <label>单词</label>
+              <%= form.text_field :word, class: 'form-control', required: true, placeholder: '请输入单词' %>
+            </div>
+
+            <div class="form-group">
+              <label>解释</label>
+              <%= form.text_field :meaning, class: 'form-control', required: true, placeholder: '请输入单词含义' %>
+            </div>
+
+          </div>
+          <!-- /.box-body -->
+
+        </div>
+      </div>
+
+
+
+
+
+
+      <div class="col-md-6 col-sm-12">
+        <div class="box box-warning">
+          <div class="box-header with-border">
+            <h3 class="box-title">词语释义</h3>
+            <div class="box-tools pull-right">
+              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+              </button>
+              <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+            </div>
+          </div>
+
+          <!-- /.box-header -->
+          <!-- form start -->
+
+          <div class="box-body">
+            <div class="form-group">
+              <label>单词</label>
+              <%= form.text_field :word, class: 'form-control', required: true, placeholder: '请输入单词' %>
+            </div>
+
+            <div class="form-group">
+              <label>解释</label>
+              <%= form.text_field :meaning, class: 'form-control', required: true, placeholder: '请输入单词含义' %>
+            </div>
+
+          </div>
+          <!-- /.box-body -->
+
+        </div>
+      </div>
     </div>
-  <% end %>
 
 
-  <div class="box-body">
-    <div class="form-group">
-      <label >单词</label>
-      <%= form.text_field :word, class:'form-control', required: true, placeholder:'请输入单词' %>
+    <div class="row">
+      <div class="col-sm-12 text-center">
+
+        <%= button_tag class: 'btn btn-app btn-app-warning' do %>
+            <i class="fa fa-plus"></i> 添加释义
+        <%end%>
+
+        <%= button_tag class: 'btn btn-app btn-app-primary' do %>
+            <i class="fa fa-check"></i> 提交
+        <%end%>
+
+      </div>
     </div>
-
-    <div class="form-group">
-      <label >解释</label>
-      <%= form.text_field :meaning, class:'form-control', required: true, placeholder:'请输入单词含义'  %>
-    </div>
-
-  </div>
-  <!-- /.box-body -->
-
-  <div class="box-footer text-center">
-    <%= form.submit '提交', class:'btn btn-primary btn-block'%>
-  </div>
-
 
 <% end %>
+
+

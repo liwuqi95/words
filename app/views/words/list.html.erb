@@ -4,7 +4,6 @@
   </h1>
   <ol class="breadcrumb">
     <li>
-
       <%= link_to home_index_path do %>
           <i class="fa fa-dashboard"></i> 主页
       <% end %>
@@ -78,11 +77,11 @@
     $(function () {
         $('#words-list').DataTable({
             'paging'      : true,
-            'lengthChange': false,
-            'searching'   : false,
+            'lengthChange': true,
+            'searching'   : true,
             'ordering'    : true,
             'info'        : true,
-            'autoWidth'   : false
+            'autoWidth'   : true
         })
     })
 </script>

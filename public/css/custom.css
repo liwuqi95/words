@@ -2,3 +2,14 @@
     padding-top: 15px;
     padding-bottom: 15px;
 }
+
+.btn-app-primary{
+    background-color: #3c8dbc;
+    border-color: #367fa9;
+    color: #fff;
+}
+.btn-app-warning{
+    background-color: #f39c12;
+    border-color: #e08e0b;
+    color: #fff;
+}

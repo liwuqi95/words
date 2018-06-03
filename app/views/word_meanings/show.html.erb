@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Word:</strong>
+  <%= @word_meaning.word_id %>
+</p>
+
+<p>
+  <strong>Meaning:</strong>
+  <%= @word_meaning.meaning %>
+</p>
+
+<p>
+  <strong>Character:</strong>
+  <%= @word_meaning.character %>
+</p>
+
+<%= link_to 'Edit', edit_word_meaning_path(@word_meaning) %> |
+<%= link_to 'Back', word_meanings_path %>

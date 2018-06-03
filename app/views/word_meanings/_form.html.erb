@@ -1,0 +1,32 @@
+<%= form_with(model: word_meaning, local: true) do |form| %>
+  <% if word_meaning.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(word_meaning.errors.count, "error") %> prohibited this word_meaning from being saved:</h2>
+
+      <ul>
+      <% word_meaning.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :word_id %>
+    <%= form.number_field :word_id, id: :word_meaning_word_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :meaning %>
+    <%= form.text_field :meaning, id: :word_meaning_meaning %>
+  </div>
+
+  <div class="field">
+    <%= form.label :character %>
+    <%= form.number_field :character, id: :word_meaning_character %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
