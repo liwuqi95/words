@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'home/index'
+
+  root 'home/index'
+
   resources :tests
   resources :libraries
   resources :words
