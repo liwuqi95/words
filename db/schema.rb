@@ -10,7 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180603022442) do
+ActiveRecord::Schema.define(version: 20180603031119) do
+
+  create_table "libraries", force: :cascade do |t|
+    t.string "name"
+    t.integer "grade"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "word_libraries", force: :cascade do |t|
+    t.integer "word_id"
+    t.integer "library_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "words", force: :cascade do |t|
     t.string "word"

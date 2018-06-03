@@ -10,5 +10,13 @@
   <%= @word.meaning %>
 </p>
 
+<p>
+  <% @libraries.each do |library| %>
+      <%= library.name %>
+
+      <%= link_to 'add', word_libraries_path(:word_library =>{:word_id => @word, :library_id => library}), method: :post %>
+  <% end %>
+</p>
+
 <%= link_to 'Edit', edit_word_path(@word) %> |
 <%= link_to 'Back', words_path %>
