@@ -2,7 +2,7 @@
 
 <h1>Libraries</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Name</th>
@@ -16,9 +16,9 @@
       <tr>
         <td><%= library.name %></td>
         <td><%= library.grade %></td>
-        <td><%= link_to 'Show', library %></td>
-        <td><%= link_to 'Edit', edit_library_path(library) %></td>
-        <td><%= link_to 'Destroy', library, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to '查看', library %></td>
+        <td><%= link_to '编辑', edit_library_path(library) %></td>
+        <td><%= link_to '删除', library, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>

@@ -1,2 +1,37 @@
-<h1>Home#index</h1>
-<p>Find me in app/views/home/index.html.erb</p>
+<br>
+
+<div class="row">
+
+  <div class="col-lg-4 col-md-6">
+    <div class="card">
+      <div class="card-body text-center">
+
+        <p><i class="fab fa-adversal fa-7x"></i></p>
+
+        <%= link_to '单词列表', words_path, class: 'btn btn-outline-primary btn-block' %>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-lg-4 col-md-6">
+    <div class="card">
+      <div class="card-body text-center">
+        <p><i class="fas fa-book fa-7x"></i></p>
+        <%= link_to '教材管理', libraries_path, class: 'btn btn-outline-primary btn-block' %>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-lg-4 col-md-6">
+    <div class="card">
+      <div class="card-body text-center">
+        <p><i class="far fa-calendar-check fa-7x"></i></p>
+        <%= link_to '测试记录', tests_path, class: 'btn btn-outline-primary btn-block' %>
+      </div>
+    </div>
+  </div>
+
+
+</div>
