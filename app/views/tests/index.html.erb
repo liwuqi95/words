@@ -2,7 +2,7 @@
 
 <h1>Tests</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Library</th>
@@ -14,7 +14,7 @@
   <tbody>
     <% @tests.each do |test| %>
       <tr>
-        <td><%= test.library_id %></td>
+        <td><%= test.library.name %></td>
         <td><%= test.user_id %></td>
         <td><%= link_to 'Show', test %></td>
         <td><%= link_to 'Edit', edit_test_path(test) %></td>

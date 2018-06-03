@@ -11,17 +11,23 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :word %>
-    <%= form.text_field :word, id: :word_word %>
-  </div>
 
-  <div class="field">
-    <%= form.label :meaning %>
-    <%= form.text_field :meaning, id: :word_meaning %>
-  </div>
 
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+    <div class="form-group">
+      <label >单词</label>
+      <%= form.text_field :word, class:'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <label >解释</label>
+      <%= form.text_field :meaning, class:'form-control' %>
+    </div>
+
+
+
+
+
+    <%= form.submit '提交', class:'btn btn-primary'%>
+
+
 <% end %>
