@@ -28,8 +28,8 @@
             </div>
 
             <div class="form-group">
-              <label>解释</label>
-              <%= form.text_field :meaning, class: 'form-control', required: true, placeholder: '请输入单词含义' %>
+              <label>音标</label>
+              <%= form.text_field :phonetic, class: 'form-control', required: true, placeholder: '请输入音标' %>
             </div>
 
           </div>
@@ -39,34 +39,32 @@
       </div>
 
 
-
-
-
-
       <div class="col-md-6 col-sm-12">
         <div class="box box-warning">
           <div class="box-header with-border">
             <h3 class="box-title">词语释义</h3>
-            <div class="box-tools pull-right">
-              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
-              </button>
-              <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-            </div>
           </div>
 
           <!-- /.box-header -->
           <!-- form start -->
 
           <div class="box-body">
-            <div class="form-group">
-              <label>单词</label>
-              <%= form.text_field :word, class: 'form-control', required: true, placeholder: '请输入单词' %>
-            </div>
 
-            <div class="form-group">
-              <label>解释</label>
-              <%= form.text_field :meaning, class: 'form-control', required: true, placeholder: '请输入单词含义' %>
-            </div>
+            <%= form.fields_for :word_meanings do |meanings_form| %>
+
+
+                <div class="form-group">
+                  <label>词性</label>
+                  <%= meanings_form.select :character, WordMeaning.characters, {}, class: 'form-control select2', style:'width: 100%;' %>
+                </div>
+
+                <div class="form-group">
+                  <label>解释</label>
+                  <%= meanings_form.text_field :meaning,  class: 'form-control', required: true, placeholder: '请输入单词含义' %>
+                </div>
+
+            <% end %>
+
 
           </div>
           <!-- /.box-body -->
@@ -77,15 +75,12 @@
 
 
     <div class="row">
-      <div class="col-sm-12 text-center">
+      <div class="col-sm-12 col-md-offset-4 col-md-4 text-center">
 
-        <%= button_tag class: 'btn btn-app btn-app-warning' do %>
-            <i class="fa fa-plus"></i> 添加释义
-        <%end%>
 
-        <%= button_tag class: 'btn btn-app btn-app-primary' do %>
+        <%= button_tag class: 'btn btn-primary btn-block' do %>
             <i class="fa fa-check"></i> 提交
-        <%end%>
+        <% end %>
 
       </div>
     </div>

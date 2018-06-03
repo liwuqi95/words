@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 20180603154552) do
   create_table "word_meanings", force: :cascade do |t|
     t.integer "word_id"
     t.string "meaning"
-    t.integer "character"
+    t.integer "character", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

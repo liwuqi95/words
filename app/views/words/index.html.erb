@@ -29,7 +29,6 @@
   <thead>
   <tr>
     <th>单词</th>
-    <th>解释</th>
     <th colspan="3"></th>
   </tr>
   </thead>
@@ -38,7 +37,6 @@
   <% @words.each do |word| %>
       <tr>
         <td><%= word.word %></td>
-        <td><%= word.meaning %></td>
 
         <td><%= link_to '查看', word %></td>
         <td><%= link_to '编辑', edit_word_path(word) %></td>

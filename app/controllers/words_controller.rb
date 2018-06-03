@@ -20,6 +20,7 @@ class WordsController < ApplicationController
   # GET /words/new
   def new
     @word = Word.new
+    @word.word_meanings.build
   end
 
   # GET /words/1/edit
@@ -33,11 +34,11 @@ class WordsController < ApplicationController
 
     respond_to do |format|
       if @word.save
-        format.html { redirect_to list_words_path, notice: '成功添加单词.' }
-        format.json { render :show, status: :created, location: @word }
+        format.html {redirect_to list_words_path, notice: '成功添加单词.'}
+        format.json {render :show, status: :created, location: @word}
       else
-        format.html { render :new }
-        format.json { render json: @word.errors, status: :unprocessable_entity }
+        format.html {render :new}
+        format.json {render json: @word.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -47,11 +48,11 @@ class WordsController < ApplicationController
   def update
     respond_to do |format|
       if @word.update(word_params)
-        format.html { redirect_to list_words_path, notice: '成功修改单词.' }
-        format.json { render :show, status: :ok, location: @word }
+        format.html {redirect_to list_words_path, notice: '成功修改单词.'}
+        format.json {render :show, status: :ok, location: @word}
       else
-        format.html { render :edit }
-        format.json { render json: @word.errors, status: :unprocessable_entity }
+        format.html {render :edit}
+        format.json {render json: @word.errors, status: :unprocessable_entity}
       end
     end
   end
@@ -61,19 +62,19 @@ class WordsController < ApplicationController
   def destroy
     @word.destroy
     respond_to do |format|
-      format.html { redirect_to words_url, notice: '成功删除单词.' }
-      format.json { head :no_content }
+      format.html {redirect_to words_url, notice: '成功删除单词.'}
+      format.json {head :no_content}
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_word
-      @word = Word.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_word
+    @word = Word.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def word_params
-      params.require(:word).permit(:word, :meaning)
-    end
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def word_params
+    params.require(:word).permit(:word, :phonetic ,word_meanings_attributes: [:meaning, :character])
+  end
 end
