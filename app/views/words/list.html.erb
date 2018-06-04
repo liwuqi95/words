@@ -1,23 +1,21 @@
-<section class="content-header">
-  <h1>
-    单词列表
-  </h1>
-  <ol class="breadcrumb">
-    <li>
-      <%= link_to home_index_path do %>
-          <i class="fa fa-dashboard"></i> 主页
-      <% end %>
+<div class="row">
+  <div class="col-xl-12">
+    <div class="breadcrumb-holder">
+      <h1 class="main-title float-left">单词列表</h1>
+      <ol class="breadcrumb float-right">
+        <li class="breadcrumb-item">   <%= link_to home_index_path do %>
+              主页
 
-    </li>
-    <li><%= link_to '单词列表', words_path %></li>
-    <li class="active">单词列表</li>
-  </ol>
-</section>
+          <% end %></li>
+        <li class="breadcrumb-item active">单词列表</li>
+      </ol>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>
 
-<!-- Main content -->
-<section class="content">
+
   <% if notice %>
-
       <script>
           swal("操作成功!", "<%=notice %>", "success");
       </script>
@@ -26,17 +24,17 @@
 
 
   <div class="row">
-    <div class="col-xs-12">
 
-      <div class="box">
-        <div class="box-header">
-          <h3 class="box-title">详细列表</h3>
+    <div class="col-xs-12 col-sm-12 col-md-12">
+      <div class="card mb-3">
+        <div class="card-header">
+          <h3><i class="fa fa-table"></i> 详细信息</h3>
         </div>
-        <!-- /.box-header -->
-        <div class="box-body">
 
-          <table id="words-list" class="table table-bordered table-striped">
-            <thead>
+        <div class="card-body">
+          <div class="table-responsive">
+            <table id="words-list" class="table table-bordered table-hover display">
+              <thead>
             <tr>
               <th>单词</th>
 
@@ -45,36 +43,28 @@
               <th></th>
             </tr>
             </thead>
-            <tbody>
-            <% @words.each do |word| %>
-                <tr>
-                  <td><%= word.word %></td>
+              <tbody>
 
-                  <td><%= link_to '查看', word %></td>
-                  <td><%= link_to '编辑', edit_word_path(word) %></td>
-                  <td><%= link_to '删除', word, method: :delete, data: {confirm: 'Are you sure?'} %></td>
-                </tr>
-            <% end %>
-            </tbody>
-            <tfoot>
-            <tr>
-              <th>单词</th>
+              <% @words.each do |word| %>
+                  <tr>
+                    <td><%= word.word %></td>
 
-              <th></th>
-              <th></th>
-              <th></th>
-            </tr>
-            </tfoot>
-          </table>
+                    <td><%= link_to '查看', word %></td>
+                    <td><%= link_to '编辑', edit_word_path(word) %></td>
+                    <td><%= link_to '删除', word, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+                  </tr>
+              <% end %>
+              </tbody>
+            </table>
+          </div>
+
         </div>
-        <!-- /.box-body -->
-      </div>
-      <!-- /.box -->
+      </div><!-- end card-->
     </div>
+
     <!-- /.col -->
   </div>
-  <!-- /.row -->
-</section>
+
 
 
 
@@ -98,5 +88,9 @@
             }
         })
     });
+
+    $(document).ready(function() {
+        $('#example1').DataTable();
+    } );
 
 </script>
