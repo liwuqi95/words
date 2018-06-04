@@ -14,7 +14,6 @@ class WordsController < ApplicationController
   # GET /words/1
   # GET /words/1.json
   def show
-    @libraries = Library.all
   end
 
   # GET /words/new
@@ -25,6 +24,7 @@ class WordsController < ApplicationController
 
   # GET /words/1/edit
   def edit
+    @word.word_meanings.build
   end
 
   # POST /words

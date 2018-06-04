@@ -1,24 +1,110 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Word:</strong>
-  <%= @word.word %>
-</p>
+<div class="row">
+  <div class="col-xl-12">
+    <div class="breadcrumb-holder">
+      <h1 class="main-title float-left">单词</h1>
+      <ol class="breadcrumb float-right">
+        <li class="breadcrumb-item">   <%= link_to home_index_path do %>
+              主页
 
-<p>
-  <strong>音标</strong>
-  <%= @word.phonetic%>
-</p>
+          <% end %></li>
+        <li class="breadcrumb-item active">单词列表</li>
+        <li class="breadcrumb-item active"><%= @word.word%></li>
+      </ol>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>
 
 
 
-<p>
-  <% @libraries.each do |library| %>
-      <%= library.name %>
 
-      <%= link_to 'add', word_libraries_path(:word_library =>{:word_id => @word, :library_id => library}), method: :post %>
-  <% end %>
-</p>
 
-<%= link_to 'Edit', edit_word_path(@word) %> |
-<%= link_to 'Back', words_path %>
+
+
+
+<div class="row">
+  <div class="col-md-6 col-sm-12">
+    <div class="card border-primary mb-3">
+      <div class="card-header">单词卡</div>
+      <div class="card-body text-primary">
+        <h1 class="card-title"><%= @word.word%>
+          <div class="pull-right">
+            <a href="#">
+            <i class="fa fa-volume-up bigfonts " id="play-sound"></i>
+            </a>
+          </div></h1>
+
+
+
+        <p class="card-text"><%= @word.phonetic %>
+
+        </p>
+      </div>
+    </div>
+
+
+    <%@word.word_meanings.each do |meaning| %>
+
+    <div class="card border-primary mb-3">
+      <div class="card-body text-primary">
+        <h4 class="card-title"><%= meaning.meaning%> </h4>
+        <p class="card-text"><%= meaning.character %></p>
+      </div>
+    </div>
+    <%end%>
+  </div>
+
+
+
+
+
+
+
+
+
+</div>
+
+<div class="row">
+  <div class="col-md-6 col-sm-12 text-center">
+    <%= link_to '后退', list_words_path,class:'btn btn-success' %>
+<%= link_to '编辑', edit_word_path(@word),class:'btn btn-danger' %>
+
+  </div>
+</div>
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+
+<script>
+  $('#play-sound').click(function(){
+      console.log('playsound');
+
+      var appKey = '124d21e4ca899cb4';
+      var key = 'yp91G06lpXa1iSoSKUbEoOoXG6n5P39N'; //注意：暴露appSecret，有被盗用造成损失的风险
+      var salt = (new Date).getTime();
+      var query = '<%= @word.word%>';
+
+      var from = 'en';
+      var to = 'en';
+      var str1 = appKey + query + salt +key;
+      var sign = md5(str1);
+      $.ajax({
+          url: 'http://openapi.youdao.com/api',
+          type: 'post',
+          dataType: 'jsonp',
+          data: {
+              q: query,
+              appKey: appKey,
+              salt: salt,
+              from: from,
+              to: to,
+              sign: sign
+          },
+          success: function (data) {
+              console.log(data);
+              $.playSound(data.basic["uk-speech"])
+          }
+      });
+
+  })
+
+</script>
