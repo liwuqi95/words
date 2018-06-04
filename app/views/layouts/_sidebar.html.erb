@@ -27,6 +27,23 @@
 
           </ul>
         </li>
+
+        <li class="submenu">
+          <a href="#" id="sidebar-libraries"><i class="fa fa-fw fa-book"></i> <span> 教材管理 </span> <span class="menu-arrow"></span></a>
+          <ul class="list-unstyled">
+
+            <li id="sidebar-libraries-new">
+              <%= link_to '添加教材', new_word_path %>
+            </li>
+
+            <li id="sidebar-libraries-list">
+              <%= link_to '教材列表', list_words_path %>
+            </li>
+
+          </ul>
+        </li>
+
+
       </ul>
 
       <div class="clearfix"></div>

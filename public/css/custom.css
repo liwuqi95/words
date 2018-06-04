@@ -1,25 +1,4 @@
-.col-lg-4, .col-md-6{
-    padding-top: 15px;
-    padding-bottom: 15px;
+.main-sidebar.left{
+    position:fixed;
 }
-
-.btn-app-primary{
-    background-color: #3c8dbc;
-    border-color: #367fa9;
-    color: #fff;
-}
-.btn-app-warning{
-    background-color: #f39c12;
-    border-color: #e08e0b;
-    color: #fff;
-}
-
-/*.skin-blue-light .main-header .navbar {*/
-    /*background-color: #222;*/
-/*}*/
-
-
-/*.skin-blue-light .main-header .logo{*/
-    /*background-color: #222;*/
-/*}*/
 
