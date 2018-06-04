@@ -62,7 +62,7 @@ class WordsController < ApplicationController
   def destroy
     @word.destroy
     respond_to do |format|
-      format.html {redirect_to words_url, notice: '成功删除单词.'}
+      format.html {redirect_to list_words_path, notice: '成功删除单词.'}
       format.json {head :no_content}
     end
   end
