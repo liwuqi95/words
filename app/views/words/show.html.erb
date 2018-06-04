@@ -88,7 +88,7 @@
       var str1 = appKey + query + salt +key;
       var sign = md5(str1);
       $.ajax({
-          url: 'http://openapi.youdao.com/api',
+          url: 'https://openapi.youdao.com/api',
           type: 'post',
           dataType: 'jsonp',
           data: {
@@ -100,7 +100,6 @@
               sign: sign
           },
           success: function (data) {
-              console.log(data);
               $.playSound(data.basic["uk-speech"])
           }
       });
