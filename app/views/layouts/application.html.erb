@@ -5,52 +5,58 @@
   <%= csrf_meta_tags %>
 
   <% stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-  <%= javascript_include_tag 'application'%>
+  <%= javascript_include_tag 'application' %>
 
 
   <%= render 'layouts/head' %>
 </head>
 
-<body class="hold-transition skin-blue-light sidebar-mini">
+
+<body class="adminbody">
 
 
-<div class="wrapper">
+<div id="main">
 
   <%= render 'layouts/header' %>
 
   <%= render 'layouts/sidebar' %>
 
-  <div class="content-wrapper">
-    <%= yield %>
+  <div class="content-page">
 
+    <!-- Start content -->
+    <div class="content">
+      <div class="container-fluid">
+        <%= yield %>
+      </div>
+    </div>
   </div>
+
 </div>
 
+<script src="/assets/js/modernizr.min.js"></script>
 
-<!-- Bootstrap 3.3.7 -->
-<script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-<!-- Select2 -->
-<script src="/bower_components/select2/dist/js/select2.full.min.js"></script>
-<!-- DataTables -->
-<script src="/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-<!-- SlimScroll -->
-<script src="/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-<!-- FastClick -->
-<script src="/bower_components/fastclick/lib/fastclick.js"></script>
-<!-- AdminLTE App -->
-<script src="/dist/js/adminlte.min.js"></script>
+<script src="/assets/js/moment.min.js"></script>
 
+<script src="/assets/js/popper.min.js"></script>
+<script src="/assets/js/bootstrap.min.js"></script>
 
+<script src="/assets/js/detect.js"></script>
+<script src="/assets/js/fastclick.js"></script>
+<script src="/assets/js/jquery.blockUI.js"></script>
+<script src="/assets/js/jquery.nicescroll.js"></script>
 
-<script>
-    $(document).ready(function () {
-        //Initialize Select2 Elements
-        $('.select2').select2();
+<!-- App js -->
+<script src="/assets/js/pikeadmin.js"></script>
 
-        $('.sidebar-menu').tree()
-    })
-</script>
+<!-- BEGIN Java Script for this page -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+
+<!-- Counter-Up-->
+<script src="/assets/plugins/waypoints/lib/jquery.waypoints.min.js"></script>
+<script src="/assets/plugins/counterup/jquery.counterup.min.js"></script>
+
 
 </body>
 </html>

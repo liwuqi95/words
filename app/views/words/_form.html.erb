@@ -13,75 +13,67 @@
       <% end %>
 
 
-      <div class="col-md-6 col-sm-12">
-        <div class="box box-primary">
-          <div class="box-header with-border">
-            <h3 class="box-title">单词信息</h3>
-          </div>
-          <!-- /.box-header -->
-          <!-- form start -->
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+        <div class="card mb-3">
+          <div class="card-header">
+            <h3><i class="fa fa-font"></i> 单词信息</h3>
 
-          <div class="box-body">
+          </div>
+
+          <div class="card-body">
             <div class="form-group">
-              <label>单词</label>
+              <label>拼写</label>
               <%= form.text_field :word, class: 'form-control', required: true, placeholder: '请输入单词' %>
+              <small class="form-text text-muted">请完整输入单词，如是短句，单词间请用空格分开。</small>
             </div>
+
 
             <div class="form-group">
-              <label>音标</label>
+              <label>英音音标</label>
               <%= form.text_field :phonetic, class: 'form-control', required: true, placeholder: '请输入音标' %>
+              <small id="numberlHelp" class="form-text text-muted">请完整输入单词英音音标</small>
             </div>
-
           </div>
-          <!-- /.box-body -->
-
-        </div>
+        </div><!-- end card-->
       </div>
 
+      <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+        <div class="card mb-3">
+          <div class="card-header">
+            <h3><i class="fa fa-book"></i> 词语释义</h3>
 
-      <div class="col-md-6 col-sm-12">
-        <div class="box box-warning">
-          <div class="box-header with-border">
-            <h3 class="box-title">词语释义</h3>
           </div>
 
-          <!-- /.box-header -->
-          <!-- form start -->
-
-          <div class="box-body">
-
+          <div class="card-body">
             <%= form.fields_for :word_meanings do |meanings_form| %>
-
 
                 <div class="form-group">
                   <label>词性</label>
-                  <%= meanings_form.select :character, WordMeaning.characters, {}, class: 'form-control select2', style:'width: 100%;' %>
+                  <%= meanings_form.select :character, WordMeaning.characters, {}, class: 'form-control select2', style: 'width: 100%;' %>
+                  <small class="form-text text-muted">请选择单词词性，如是短句则选无。</small>
                 </div>
+
 
                 <div class="form-group">
-                  <label>解释</label>
-                  <%= meanings_form.text_field :meaning,  class: 'form-control', required: true, placeholder: '请输入单词含义' %>
+                  <label>汉译</label>
+                  <%= meanings_form.text_field :meaning, class: 'form-control', required: true, placeholder: '请输入单词含义' %>
+                  <small id="numberlHelp" class="form-text text-muted">请输入完整汉语含义。</small>
                 </div>
 
+
             <% end %>
-
-
           </div>
-          <!-- /.box-body -->
-
-        </div>
+        </div><!-- end card-->
       </div>
     </div>
 
 
     <div class="row">
-      <div class="col-sm-12 col-md-offset-4 col-md-4 text-center">
+      <div class="col-sm-12 col-md-4 offset-md-4 text-center">
 
-
-        <%= button_tag class: 'btn btn-primary btn-block' do %>
+        <%= button_tag class: 'btn btn-primary btn-lg' do %>
             <i class="fa fa-check"></i> 提交
         <% end %>
-
       </div>
     </div>
 

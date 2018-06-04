@@ -1,151 +1,185 @@
-<header class="main-header">
-  <!-- Logo -->
-  <%= link_to home_index_path, class: 'logo' do %>
-      <!-- mini logo for sidebar mini 50x50 pixels -->
-      <span class="logo-mini"><img src="/logo.png" width="30" height="30" class="d-inline-block align-top" alt=""></span>
-      <!-- logo for regular state and mobile devices -->
-      <span class="logo-lg"><img src="/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">智能记忆</span>
-  <% end %>
+<div class="headerbar">
 
-  <!-- Header Navbar: style can be found in header.less -->
-  <nav class="navbar navbar-static-top">
-    <!-- Sidebar toggle button-->
-    <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-      <span class="sr-only">Toggle navigation</span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-    </a>
+  <!-- LOGO -->
+  <div class="headerbar-left">
+    <%= link_to home_index_path, class: 'logo' do %>
+        <img alt="Logo" src="/logo.png"/> <span>智能记忆</span>
+    <% end %>
+  </div>
 
-    <div class="navbar-custom-menu">
-      <ul class="nav navbar-nav">
-        <!-- Messages: style can be found in dropdown.less-->
-        <li class="dropdown messages-menu">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <i class="fa fa-envelope-o"></i>
-            <span class="label label-success">4</span>
-          </a>
-          <ul class="dropdown-menu">
-            <li class="header">You have 4 messages</li>
-            <li>
-              <!-- inner menu: contains the actual data -->
-              <ul class="menu">
-                <li><!-- start message -->
-                  <a href="#">
-                    <div class="pull-left">
-                      <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
-                    </div>
-                    <h4>
-                      Support Team
-                      <small><i class="fa fa-clock-o"></i> 5 mins</small>
-                    </h4>
-                    <p>Why not buy a new awesome theme?</p>
-                  </a>
-                </li>
-                <!-- end message -->
-              </ul>
-            </li>
-            <li class="footer"><a href="#">See All Messages</a></li>
-          </ul>
-        </li>
-        <!-- Notifications: style can be found in dropdown.less -->
-        <li class="dropdown notifications-menu">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <i class="fa fa-bell-o"></i>
-            <span class="label label-warning">10</span>
-          </a>
-          <ul class="dropdown-menu">
-            <li class="header">You have 10 notifications</li>
-            <li>
-              <!-- inner menu: contains the actual data -->
-              <ul class="menu">
-                <li>
-                  <a href="#">
-                    <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li class="footer"><a href="#">View all</a></li>
-          </ul>
-        </li>
-        <!-- Tasks: style can be found in dropdown.less -->
-        <li class="dropdown tasks-menu">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <i class="fa fa-flag-o"></i>
-            <span class="label label-danger">9</span>
-          </a>
-          <ul class="dropdown-menu">
-            <li class="header">You have 9 tasks</li>
-            <li>
-              <!-- inner menu: contains the actual data -->
-              <ul class="menu">
-                <li><!-- Task item -->
-                  <a href="#">
-                    <h3>
-                      Design some buttons
-                      <small class="pull-right">20%</small>
-                    </h3>
-                    <div class="progress xs">
-                      <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar"
-                           aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
-                        <span class="sr-only">20% Complete</span>
-                      </div>
-                    </div>
-                  </a>
-                </li>
-                <!-- end task item -->
-              </ul>
-            </li>
-            <li class="footer">
-              <a href="#">View all tasks</a>
-            </li>
-          </ul>
-        </li>
-        <!-- User Account: style can be found in dropdown.less -->
-        <li class="dropdown user user-menu">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-            <span class="hidden-xs">Alexander Pierce</span>
-          </a>
-          <ul class="dropdown-menu">
-            <!-- User image -->
-            <li class="user-header">
-              <img src="../../dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+  <nav class="navbar-custom">
 
-              <p>
-                Alexander Pierce - Web Developer
-                <small>Member since Nov. 2012</small>
-              </p>
-            </li>
-            <!-- Menu Body -->
-            <li class="user-body">
-              <div class="row">
-                <div class="col-xs-4 text-center">
-                  <a href="#">Followers</a>
-                </div>
-                <div class="col-xs-4 text-center">
-                  <a href="#">Sales</a>
-                </div>
-                <div class="col-xs-4 text-center">
-                  <a href="#">Friends</a>
-                </div>
-              </div>
-              <!-- /.row -->
-            </li>
-            <!-- Menu Footer-->
-            <li class="user-footer">
-              <div class="pull-left">
-                <a href="#" class="btn btn-default btn-flat">Profile</a>
-              </div>
-              <div class="pull-right">
-                <a href="#" class="btn btn-default btn-flat">Sign out</a>
-              </div>
-            </li>
-          </ul>
-        </li>
-        <!-- Control Sidebar Toggle Button -->
-      </ul>
-    </div>
+    <ul class="list-inline float-right mb-0">
+
+      <li class="list-inline-item dropdown notif">
+        <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+          <i class="fa fa-fw fa-question-circle"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-arrow-success dropdown-lg">
+          <!-- item-->
+          <div class="dropdown-item noti-title">
+            <h5><small>Help and Support</small></h5>
+          </div>
+
+          <!-- item-->
+          <a target="_blank" href="https://www.pikeadmin.com" class="dropdown-item notify-item">
+            <p class="notify-details ml-0">
+              <b>Do you want custom development to integrate this theme?</b>
+              <span>Contact Us</span>
+            </p>
+          </a>
+
+          <!-- item-->
+          <a target="_blank" href="https://www.pikeadmin.com/pike-admin-pro" class="dropdown-item notify-item">
+            <p class="notify-details ml-0">
+              <b>Do you want PHP version of the theme that save dozens of hours of work?</b>
+              <span>Try Pike Admin PRO</span>
+            </p>
+          </a>
+
+          <!-- All-->
+          <a title="Clcik to visit Pike Admin Website" target="_blank" href="https://www.pikeadmin.com" class="dropdown-item notify-item notify-all">
+            <i class="fa fa-link"></i> Visit Pike Admin Website
+          </a>
+
+        </div>
+      </li>
+
+      <li class="list-inline-item dropdown notif">
+        <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+          <i class="fa fa-fw fa-envelope-o"></i><span class="notif-bullet"></span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-arrow-success dropdown-lg">
+          <!-- item-->
+          <div class="dropdown-item noti-title">
+            <h5><small><span class="label label-danger pull-xs-right">12</span>Contact Messages</small></h5>
+          </div>
+
+          <!-- item-->
+          <a href="#" class="dropdown-item notify-item">
+            <p class="notify-details ml-0">
+              <b>Jokn Doe</b>
+              <span>New message received</span>
+              <small class="text-muted">2 minutes ago</small>
+            </p>
+          </a>
+
+          <!-- item-->
+          <a href="#" class="dropdown-item notify-item">
+            <p class="notify-details ml-0">
+              <b>Michael Jackson</b>
+              <span>New message received</span>
+              <small class="text-muted">15 minutes ago</small>
+            </p>
+          </a>
+
+          <!-- item-->
+          <a href="#" class="dropdown-item notify-item">
+            <p class="notify-details ml-0">
+              <b>Foxy Johnes</b>
+              <span>New message received</span>
+              <small class="text-muted">Yesterday, 13:30</small>
+            </p>
+          </a>
+
+          <!-- All-->
+          <a href="#" class="dropdown-item notify-item notify-all">
+            View All
+          </a>
+
+        </div>
+      </li>
+
+      <li class="list-inline-item dropdown notif">
+        <a class="nav-link dropdown-toggle arrow-none" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+          <i class="fa fa-fw fa-bell-o"></i><span class="notif-bullet"></span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-lg">
+          <!-- item-->
+          <div class="dropdown-item noti-title">
+            <h5><small><span class="label label-danger pull-xs-right">5</span>Allerts</small></h5>
+          </div>
+
+          <!-- item-->
+          <a href="#" class="dropdown-item notify-item">
+            <div class="notify-icon bg-faded">
+              <img src="assets/images/avatars/avatar2.png" alt="img" class="rounded-circle img-fluid">
+            </div>
+            <p class="notify-details">
+              <b>John Doe</b>
+              <span>User registration</span>
+              <small class="text-muted">3 minutes ago</small>
+            </p>
+          </a>
+
+          <!-- item-->
+          <a href="#" class="dropdown-item notify-item">
+            <div class="notify-icon bg-faded">
+              <img src="assets/images/avatars/avatar3.png" alt="img" class="rounded-circle img-fluid">
+            </div>
+            <p class="notify-details">
+              <b>Michael Cox</b>
+              <span>Task 2 completed</span>
+              <small class="text-muted">12 minutes ago</small>
+            </p>
+          </a>
+
+          <!-- item-->
+          <a href="#" class="dropdown-item notify-item">
+            <div class="notify-icon bg-faded">
+              <img src="assets/images/avatars/avatar4.png" alt="img" class="rounded-circle img-fluid">
+            </div>
+            <p class="notify-details">
+              <b>Michelle Dolores</b>
+              <span>New job completed</span>
+              <small class="text-muted">35 minutes ago</small>
+            </p>
+          </a>
+
+          <!-- All-->
+          <a href="#" class="dropdown-item notify-item notify-all">
+            View All Allerts
+          </a>
+
+        </div>
+      </li>
+
+      <li class="list-inline-item dropdown notif">
+        <a class="nav-link dropdown-toggle nav-user" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+          <img src="/assets/images/avatars/admin.png" alt="Profile image" class="avatar-rounded">
+        </a>
+        <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+          <!-- item-->
+          <div class="dropdown-item noti-title">
+            <h5 class="text-overflow"><small>Hello, admin</small> </h5>
+          </div>
+
+          <!-- item-->
+          <a href="pro-profile.html" class="dropdown-item notify-item">
+            <i class="fa fa-user"></i> <span>Profile</span>
+          </a>
+
+          <!-- item-->
+          <a href="#" class="dropdown-item notify-item">
+            <i class="fa fa-power-off"></i> <span>Logout</span>
+          </a>
+
+          <!-- item-->
+          <a target="_blank" href="https://www.pikeadmin.com" class="dropdown-item notify-item">
+            <i class="fa fa-external-link"></i> <span>Pike Admin</span>
+          </a>
+        </div>
+      </li>
+
+    </ul>
+
+    <ul class="list-inline menu-left mb-0">
+      <li class="float-left">
+        <button class="button-menu-mobile open-left">
+          <i class="fa fa-fw fa-bars"></i>
+        </button>
+      </li>
+    </ul>
+
   </nav>
-</header>
+</div>

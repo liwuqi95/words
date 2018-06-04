@@ -1,36 +1,25 @@
-<section class="content-header">
-  <h1>
-    新增单词
-  </h1>
-  <ol class="breadcrumb">
-    <li>
+<div class="row">
+  <div class="col-xl-12">
+    <div class="breadcrumb-holder">
+      <h1 class="main-title float-left">新增单词</h1>
+      <ol class="breadcrumb float-right">
+        <li class="breadcrumb-item">   <%= link_to home_index_path do %>
+              主页
 
-      <%= link_to home_index_path do %>
-          <i class="fa fa-dashboard"></i> 主页
-
-      <% end %>
-
-    </li>
-    <li><%= link_to '单词管理', words_path %></li>
-    <li class="active">新增单词</li>
-  </ol>
-</section>
+          <% end %></li>
+        <li class="breadcrumb-item active">新增单词</li>
+      </ol>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>
 
 
-<section class="content">
-
-
-
-
-        <%= render 'form', word: @word %>
-
-
-
-  <!-- /.box -->
-</section>
-
+<%= render 'form', word: @word %>
 
 
 <script>
-    $('#sidebar-words, #sidebar-words-new').addClass('active');
+    $('#sidebar-words').addClass('active');
+
+    $('#sidebar-words-new').addClass('active');
 </script>
