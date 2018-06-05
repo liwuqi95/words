@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :chapters
   resources :word_meanings
   resources :test_records
   devise_for :users

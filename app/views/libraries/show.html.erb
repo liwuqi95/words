@@ -1,4 +1,19 @@
+<div class="row">
+  <div class="col-xl-12">
+    <div class="breadcrumb-holder">
+      <h1 class="main-title float-left">教材信息</h1>
+      <ol class="breadcrumb float-right">
+        <li class="breadcrumb-item">   <%= link_to home_index_path do %>
+              主页
 
+          <% end %></li>
+        <li class="breadcrumb-item active">教材列表</li>
+        <li class="breadcrumb-item active"><%= @library.version %> <%= @library.book %> </li>
+      </ol>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>
 
 <% if notice %>
     <script>
@@ -7,16 +22,41 @@
 <% end %>
 
 
-<p>
-  <strong>Name:</strong>
-  <%= @library.version %>
-</p>
+<div class="row">
+  <div class="col-md-6 col-sm-12">
+    <div class="card border mb-3">
+      <div class="card-header">详细信息</div>
+      <div class="card-body text">
+        <h1 class="card-title"><%= @library.version %> <%= @library.book %>
+          </h1>
+        </p>
+      </div>
+    </div>
+  </div>
 
-<p>
-  <strong>Grade:</strong>
-  <%= @library.book %>
-</p>
+  <div class="col-md-6 col-sm-12">
+    <div class="card border mb-3">
+      <div class="card-header">章节信息</div>
+      <div class="card-body text">
+        <h1 class="card-title"><%= @library.version %> <%= @library.book %>
+        </h1>
+        </p>
+      </div>
+    </div>
+  </div>
 
 
-<%= link_to 'Edit', edit_library_path(@library) %> |
-<%= link_to 'Back', libraries_path %>
+</div>
+
+
+<div class="row">
+  <div class="col-md-6 col-sm-12 text-center">
+    <%= link_to '返回', list_libraries_path,class:'btn btn-success btn-lg' %> |
+    <%= link_to '编辑', edit_library_path(@library),class:'btn btn-danger btn-lg' %>
+
+
+  </div>
+</div>
+
+
+
