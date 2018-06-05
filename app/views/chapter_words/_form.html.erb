@@ -1,0 +1,27 @@
+<%= form_with(model: chapter_word, local: true) do |form| %>
+  <% if chapter_word.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(chapter_word.errors.count, "error") %> prohibited this chapter_word from being saved:</h2>
+
+      <ul>
+      <% chapter_word.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :chapter_id %>
+    <%= form.number_field :chapter_id, id: :chapter_word_chapter_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :word_id %>
+    <%= form.number_field :word_id, id: :chapter_word_word_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

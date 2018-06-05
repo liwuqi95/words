@@ -1,14 +1,119 @@
-<p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="col-xl-12">
+    <div class="breadcrumb-holder">
+      <h1 class="main-title float-left">章节信息</h1>
+      <ol class="breadcrumb float-right">
+        <li class="breadcrumb-item">   <%= link_to home_index_path do %>
+              主页
+          <% end %></li>
+        <li class="breadcrumb-item active">教材列表</li>
+        <li class="breadcrumb-item active"><%= @chapter.library.version %> <%= @chapter.library.book %> </li>
+        <li class="breadcrumb-item active"><%= @chapter.name %></li>
+      </ol>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Library:</strong>
-  <%= @chapter.library_id %>
-</p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @chapter.name %>
-</p>
+<% if notice %>
+    <script>
+        swal("操作成功!", "<%=notice %>", "success");
+    </script>
+<% end %>
+
+<div class="row">
+  <div class="col-md-6 col-sm-12">
+    <div class="card border mb-3">
+      <div class="card-header">
+        <%= @chapter.library.version %> <%= @chapter.library.book %>
+      </div>
+      <div class="card-body text">
+        <h2 class="card-title"><%= @chapter.name %>
+          <div class="pull-right">
+            <%= link_to '编辑', edit_chapter_path(@chapter), class: 'btn btn-outline-danger btn-sm' %>
+          </div>
+        </h2>
+
+
+      </div>
+    </div>
+  </div>
+
+  <div class="col-md-6 col-sm-12">
+    <div class="card border mb-3">
+      <div class="card-header">单词信息</div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table id="words-list" class="table table-bordered table-hover display">
+            <thead>
+            <tr>
+              <th scope="col">名称</th>
+              <th scope="col"></th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <% @chapter.words.each do |word| %>
+                <tr>
+                  <td><%= word.word %></td>
+                  <td><%= link_to '查看', word %> </td>
+
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+
+
+        </div>
+      </div>
+      <div class="card-footer text-muted ">
+        <%= form_for @chapter, url:add_chapter_words_path, :method => 'post' do |f|%>
+
+        <div class="row">
+
+          <div class="col-md-9">
+            <%= f.select :words, options_for_select(Word.all.collect{ |u| [u.word, u.id] }),{}, {multiple: true, class:'form-control select2'} %>
+          </div>
+
+          <!-- Modal -->
+          <div class="col-md-3">
+            <%= submit_tag("添加单词", class:'btn btn-primary ') %>
+
+            </div>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
 
 <%= link_to 'Edit', edit_chapter_path(@chapter) %> |
 <%= link_to 'Back', chapters_path %>
+
+
+<script>
+    $('#sidebar-libraries, #sidebar-libraries-list').addClass('active');
+</script>
+
+<script>
+    $(function () {
+        $('#words-list').DataTable({
+            'paging': true,
+            'lengthChange': false,
+            'searching': true,
+            'ordering': true,
+            'info': true,
+            'autoWidth': true,
+            'pageLength':8,
+            'language': {
+                "url": '//cdn.datatables.net/plug-ins/1.10.16/i18n/Chinese.json'
+            }
+        })
+    });
+
+</script>

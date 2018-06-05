@@ -1,5 +1,5 @@
 class ChaptersController < ApplicationController
-  before_action :set_chapter, only: [:show, :edit, :update, :destroy]
+  before_action :set_chapter, only: [:show, :edit, :update, :destroy, :add_words]
 
   # GET /chapters
   # GET /chapters.json
@@ -28,13 +28,24 @@ class ChaptersController < ApplicationController
 
     respond_to do |format|
       if @chapter.save
-        format.html {redirect_back(fallback_location: root_path, notice: '成功修改新章节')}
+        format.html {redirect_back(fallback_location: root_path, notice: '成功添加新章节')}
         format.json { render :show, status: :created, location: @chapter }
       else
         format.html { render :new }
         format.json { render json: @chapter.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def add_words
+
+
+    chapter_params[:words].each do |word|
+      new_word = ChapterWord.new(chapter_id: @chapter.id, word_id: word)
+      new_word.save
+    end
+
+    redirect_back(fallback_location: root_path, notice: '成功添加单词')
   end
 
   # PATCH/PUT /chapters/1
@@ -69,6 +80,6 @@ class ChaptersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def chapter_params
-      params.require(:chapter).permit(:library_id, :name)
+      params.require(:chapter).permit(:library_id, :name, words:[])
     end
 end

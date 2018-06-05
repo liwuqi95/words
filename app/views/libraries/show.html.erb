@@ -50,13 +50,8 @@
           <table id="chapters-list" class="table table-bordered table-hover display">
             <thead>
             <tr>
-              
               <th scope="col">名称</th>
-
               <th scope="col"></th>
-
-
-
             </tr>
             </thead>
             <tbody>
@@ -67,19 +62,9 @@
                   <td><%= link_to '查看', chapter %> </td>
                 </tr>
             <% end %>
-
             </tbody>
-
           </table>
-
-
-
-
-
-
         </div>
-
-
       </div>
       <div class="card-footer text-muted ">
         <div class="pull-right">
@@ -92,10 +77,7 @@
               <div class="modal-content">
 
                 <%= form_for Chapter.new do |f| %>
-
-
                 <div class="modal-header">
-
                   <h5 class="modal-title" id="exampleModalLabel">添加章节</h5>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
@@ -111,24 +93,16 @@
                     <%= f.text_field :name, class: 'form-control', required: true %>
                     <small class="form-text text-muted">请选择输入新的章节名称。</small>
                   </div>
-
-
-
-
                 </div>
                 <div class="modal-footer">
                   <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
                   <%= button_tag '添加', class: 'btn btn-primary ' %>
-
-
                 </div>
 
                 <% end %>
               </div>
             </div>
           </div>
-
-
         </div>
       </div>
     </div>

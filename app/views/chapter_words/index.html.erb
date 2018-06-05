@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Chapter Words</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Chapter</th>
+      <th>Word</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @chapter_words.each do |chapter_word| %>
+      <tr>
+        <td><%= chapter_word.chapter_id %></td>
+        <td><%= chapter_word.word_id %></td>
+        <td><%= link_to 'Show', chapter_word %></td>
+        <td><%= link_to 'Edit', edit_chapter_word_path(chapter_word) %></td>
+        <td><%= link_to 'Destroy', chapter_word, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Chapter Word', new_chapter_word_path %>
