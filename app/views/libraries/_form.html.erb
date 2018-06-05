@@ -25,9 +25,10 @@
           </div>
 
           <div class="card-body">
+
             <div class="form-group">
               <label>教材版本</label>
-              <%= form.select :character, Library.versions.keys.to_a, {}, class: 'form-control', style: 'width: 100%;' %>
+              <%= form.select :version, Library.versions.keys.to_a, {}, class: 'form-control', style: 'width: 100%;' %>
               <small class="form-text text-muted">请选择教材版本。</small>
             </div>
 
