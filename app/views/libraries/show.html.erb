@@ -1,21 +1,22 @@
-<p id="notice"><%= notice %></p>
+
+
+<% if notice %>
+    <script>
+        swal("操作成功!", "<%=notice %>", "success");
+    </script>
+<% end %>
+
 
 <p>
   <strong>Name:</strong>
-  <%= @library.name %>
+  <%= @library.version %>
 </p>
 
 <p>
   <strong>Grade:</strong>
-  <%= @library.grade %>
+  <%= @library.book %>
 </p>
 
-<p>
-  <strong>Words:</strong>
-  <% @library.words.each do |word| %>
-      <%= word.word %>
-  <% end %>
-</p>
 
 <%= link_to 'Edit', edit_library_path(@library) %> |
 <%= link_to 'Back', libraries_path %>

@@ -17,6 +17,8 @@ class WordLibrariesController < ApplicationController
     @word_library = WordLibrary.new
   end
 
+
+
   # GET /word_libraries/1/edit
   def edit
   end

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   resources :tests
 
 
-
+  get '/libraries/list', to: 'libraries#list', as: 'list_libraries'
   resources :libraries
 
 

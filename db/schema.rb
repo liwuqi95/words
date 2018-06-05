@@ -10,13 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180603154552) do
+ActiveRecord::Schema.define(version: 20180604232329) do
 
   create_table "libraries", force: :cascade do |t|
-    t.string "name"
-    t.integer "grade"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "version", default: 0, null: false
+    t.string "book"
   end
 
   create_table "test_records", force: :cascade do |t|

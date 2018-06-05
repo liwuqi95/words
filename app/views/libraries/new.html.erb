@@ -1,8 +1,22 @@
-<h1>New Library</h1>
+<div class="row">
+  <div class="col-xl-12">
+    <div class="breadcrumb-holder">
+      <h1 class="main-title float-left">新增教材</h1>
+      <ol class="breadcrumb float-right">
+        <li class="breadcrumb-item">   <%= link_to home_index_path do %>
+              主页
+
+          <% end %></li>
+        <li class="breadcrumb-item active">新增教材</li>
+      </ol>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>
+
 
 <%= render 'form', library: @library %>
 
-<%= link_to 'Back', libraries_path %>
-
-
-
+<script>
+    $('#sidebar-libraries, #sidebar-libraries-new').addClass('active');
+</script>

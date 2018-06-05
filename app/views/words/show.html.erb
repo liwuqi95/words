@@ -35,15 +35,12 @@
             </a>
           </div></h1>
 
-
-
         <p class="card-text"><%= @word.phonetic %>
 
         </p>
       </div>
     </div>
-
-
+    \
     <%@word.word_meanings.each do |meaning| %>
 
     <div class="card border-primary mb-3">
@@ -55,20 +52,12 @@
     <%end%>
   </div>
 
-
-
-
-
-
-
-
-
 </div>
 
 <div class="row">
   <div class="col-md-6 col-sm-12 text-center">
-    <%= link_to '后退', list_words_path,class:'btn btn-success' %>
-<%= link_to '编辑', edit_word_path(@word),class:'btn btn-danger' %>
+    <%= link_to '后退', list_words_path,class:'btn btn-success btn-lg' %>
+<%= link_to '编辑', edit_word_path(@word),class:'btn btn-danger btn-lg' %>
 
   </div>
 </div>
@@ -76,8 +65,6 @@
 
 <script>
   $('#play-sound').click(function(){
-      console.log('playsound');
-
       var appKey = '124d21e4ca899cb4';
       var key = 'yp91G06lpXa1iSoSKUbEoOoXG6n5P39N'; //注意：暴露appSecret，有被盗用造成损失的风险
       var salt = (new Date).getTime();
