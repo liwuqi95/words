@@ -15,20 +15,27 @@
   </div>
 </div>
 
+
 <% if notice %>
     <script>
         swal("操作成功!", "<%=notice %>", "success");
     </script>
 <% end %>
 
-
 <div class="row">
   <div class="col-md-6 col-sm-12">
     <div class="card border mb-3">
-      <div class="card-header">详细信息</div>
+      <div class="card-header">
+        详细信息
+
+
+      </div>
       <div class="card-body text">
-        <h1 class="card-title"><%= @library.version %> <%= @library.book %>
-          </h1>
+        <h2 class="card-title"><%= @library.version %> <%= @library.book %>
+          <div class="pull-right">
+            <%= link_to '编辑', edit_library_path(@library), class: 'btn btn-outline-danger btn-sm' %>
+          </div>
+        </h2>
         </p>
       </div>
     </div>
@@ -37,26 +44,117 @@
   <div class="col-md-6 col-sm-12">
     <div class="card border mb-3">
       <div class="card-header">章节信息</div>
-      <div class="card-body text">
-        <h1 class="card-title"><%= @library.version %> <%= @library.book %>
-        </h1>
-        </p>
+      <div class="card-body">
+
+        <div class="table-responsive">
+          <table id="chapters-list" class="table table-bordered table-hover display">
+            <thead>
+            <tr>
+              
+              <th scope="col">名称</th>
+
+              <th scope="col"></th>
+
+
+
+            </tr>
+            </thead>
+            <tbody>
+
+            <% @library.chapters.each do |chapter| %>
+                <tr>
+                  <td><%= chapter.name %></td>
+                  <td><%= link_to '查看', chapter %> </td>
+                </tr>
+            <% end %>
+
+            </tbody>
+
+          </table>
+
+
+
+
+
+
+        </div>
+
+
+      </div>
+      <div class="card-footer text-muted ">
+        <div class="pull-right">
+        <a role="button" href="#" class="btn btn-primary " data-toggle="modal" data-target="#newChapterModal">
+          添加章节
+        </a>
+          <!-- Modal -->
+          <div class="modal fade" id="newChapterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+
+                <%= form_for Chapter.new do |f| %>
+
+
+                <div class="modal-header">
+
+                  <h5 class="modal-title" id="exampleModalLabel">添加章节</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+
+
+                  <%=f.hidden_field :library_id, value: @library.id %>
+
+                  <div class="form-group">
+                    <label>章节名称</label>
+                    <%= f.text_field :name, class: 'form-control', required: true %>
+                    <small class="form-text text-muted">请选择输入新的章节名称。</small>
+                  </div>
+
+
+
+
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                  <%= button_tag '添加', class: 'btn btn-primary ' %>
+
+
+                </div>
+
+                <% end %>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
       </div>
     </div>
   </div>
-
-
-</div>
-
-
-<div class="row">
-  <div class="col-md-6 col-sm-12 text-center">
-    <%= link_to '返回', list_libraries_path,class:'btn btn-success btn-lg' %> |
-    <%= link_to '编辑', edit_library_path(@library),class:'btn btn-danger btn-lg' %>
-
-
-  </div>
 </div>
 
 
 
+
+<script>
+    $('#sidebar-libraries, #sidebar-libraries-list').addClass('active');
+</script>
+
+<script>
+    $(function () {
+        $('#chapters-list').DataTable({
+            'paging': false,
+            'lengthChange': false,
+            'searching': false,
+            'ordering': true,
+            'info': false,
+            'autoWidth': true,
+            'language': {
+                "url": '//cdn.datatables.net/plug-ins/1.10.16/i18n/Chinese.json'
+            }
+        })
+    });
+
+</script>
