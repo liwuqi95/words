@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :lesson_records
+  resources :lessons
   resources :chapter_words
 
   post '/chapter/:id/add_words', to: 'chapters#add_words', as: 'add_chapter_words'

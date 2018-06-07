@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Lesson Records</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Lesson</th>
+      <th>Word</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @lesson_records.each do |lesson_record| %>
+      <tr>
+        <td><%= lesson_record.lesson_id %></td>
+        <td><%= lesson_record.word_id %></td>
+        <td><%= link_to 'Show', lesson_record %></td>
+        <td><%= link_to 'Edit', edit_lesson_record_path(lesson_record) %></td>
+        <td><%= link_to 'Destroy', lesson_record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Lesson Record', new_lesson_record_path %>

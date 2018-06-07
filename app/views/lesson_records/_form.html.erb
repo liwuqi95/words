@@ -1,0 +1,27 @@
+<%= form_with(model: lesson_record, local: true) do |form| %>
+  <% if lesson_record.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(lesson_record.errors.count, "error") %> prohibited this lesson_record from being saved:</h2>
+
+      <ul>
+      <% lesson_record.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :lesson_id %>
+    <%= form.number_field :lesson_id, id: :lesson_record_lesson_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :word_id %>
+    <%= form.number_field :word_id, id: :lesson_record_word_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
