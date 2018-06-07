@@ -4,7 +4,6 @@ Rails.application.routes.draw do
   post '/chapter/:id/add_words', to: 'chapters#add_words', as: 'add_chapter_words'
   resources :chapters
   resources :word_meanings
-  resources :test_records
   devise_for :users
   get 'home/index'
 
@@ -12,7 +11,6 @@ Rails.application.routes.draw do
 
 
   get '/tests/launch/:id', to: 'tests#launch', as: 'launch_test'
-  resources :tests
 
 
   get '/libraries/list', to: 'libraries#list', as: 'list_libraries'

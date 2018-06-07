@@ -5,3 +5,9 @@
 .home-icon{
     font-size: 150px !important;
 }
+
+.soft-key{
+    width: 50px;
+    height: 50px;
+    margin-left: 15px;
+}
