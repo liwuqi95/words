@@ -12,13 +12,18 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :lesson_id %>
-    <%= form.number_field :lesson_id, id: :lesson_record_lesson_id %>
+    <%= form.label :chapter_id %>
+    <%= form.number_field :chapter_id, id: :lesson_record_chapter_id %>
   </div>
 
   <div class="field">
     <%= form.label :word_id %>
     <%= form.number_field :word_id, id: :lesson_record_word_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.number_field :user_id, id: :lesson_record_user_id %>
   </div>
 
   <div class="actions">

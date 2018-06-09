@@ -1,5 +1,5 @@
 class ChaptersController < ApplicationController
-  before_action :set_chapter, only: [:show, :edit, :update, :destroy, :add_words]
+  before_action :set_chapter, only: [:show, :edit, :update, :destroy, :add_words,:learn]
 
   # GET /chapters
   # GET /chapters.json
@@ -10,6 +10,15 @@ class ChaptersController < ApplicationController
   # GET /chapters/1
   # GET /chapters/1.json
   def show
+  end
+
+  def learn
+    @taken_words = LessonRecord.where(" chapter_id = ? AND user_id = ?",@chapter.id, current_user.id)
+    @all_words = @chapter.words
+    @left_words = @all_words - @taken_words
+
+    @current_word = @left_words.first
+
   end
 
   # GET /chapters/new
@@ -38,7 +47,6 @@ class ChaptersController < ApplicationController
   end
 
   def add_words
-
 
     chapter_params[:words].each do |word|
       new_word = ChapterWord.new(chapter_id: @chapter.id, word_id: word)

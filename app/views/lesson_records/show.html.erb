@@ -1,13 +1,18 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Lesson:</strong>
-  <%= @lesson_record.lesson_id %>
+  <strong>Chapter:</strong>
+  <%= @lesson_record.chapter_id %>
 </p>
 
 <p>
   <strong>Word:</strong>
   <%= @lesson_record.word_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @lesson_record.user_id %>
 </p>
 
 <%= link_to 'Edit', edit_lesson_record_path(@lesson_record) %> |

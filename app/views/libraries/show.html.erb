@@ -52,6 +52,7 @@
             <tr>
               <th scope="col">名称</th>
               <th scope="col"></th>
+              <th scope="col"></th>
             </tr>
             </thead>
             <tbody>
@@ -60,6 +61,7 @@
                 <tr>
                   <td><%= chapter.name %></td>
                   <td><%= link_to '查看', chapter %> </td>
+                  <td><%= link_to '学习', chapter_learn_path(chapter)%></td>
                 </tr>
             <% end %>
             </tbody>

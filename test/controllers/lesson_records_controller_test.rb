@@ -17,7 +17,7 @@ class LessonRecordsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create lesson_record" do
     assert_difference('LessonRecord.count') do
-      post lesson_records_url, params: { lesson_record: { lesson_id: @lesson_record.lesson_id, word_id: @lesson_record.word_id } }
+      post lesson_records_url, params: { lesson_record: { chapter_id: @lesson_record.chapter_id, user_id: @lesson_record.user_id, word_id: @lesson_record.word_id } }
     end
 
     assert_redirected_to lesson_record_url(LessonRecord.last)
@@ -34,7 +34,7 @@ class LessonRecordsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update lesson_record" do
-    patch lesson_record_url(@lesson_record), params: { lesson_record: { lesson_id: @lesson_record.lesson_id, word_id: @lesson_record.word_id } }
+    patch lesson_record_url(@lesson_record), params: { lesson_record: { chapter_id: @lesson_record.chapter_id, user_id: @lesson_record.user_id, word_id: @lesson_record.word_id } }
     assert_redirected_to lesson_record_url(@lesson_record)
   end
 
