@@ -23,16 +23,23 @@
 
       <%= render 'layouts/sidebar' %>
 
-  <% end %>
-  <div class="content-page">
 
-    <!-- Start content -->
-    <div class="content">
-      <div class="container-fluid">
-        <%= yield %>
+      <div class="content-page">
+
+        <!-- Start content -->
+        <div class="content">
+          <div class="container-fluid">
+            <%= yield %>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
+
+  <% else %>
+      <div class="content-page">
+      <%= yield %>
+      </div>
+  <% end %>
+
 
 </div>
 
