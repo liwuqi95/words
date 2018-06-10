@@ -1,26 +1,43 @@
-<h2>Log in</h2>
+<div class="row">
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+  <div class="col-xs-12 col-sm-12 col-md-4 offset-md-3" style="margin-top: 5%">
+    <h2 class="text-center"><strong>智能</strong>记忆</h2>
+    <br>
+    <div class="card mb-3">
+      <div class="card-body">
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+            <div class="form-group">
+              <label>电子邮箱</label>
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control', required: true %>
+            </div>
 
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+
+            <div class="form-group">
+              <label>密码</label>
+              <%= f.password_field :password, autocomplete: "off", class: 'form-control', required: true %>
+            </div>
+
+
+            <div class="form-check">
+              <% if devise_mapping.rememberable? -%>
+                  <%= f.check_box :remember_me %>
+                  <label>记住我的登录</label>
+              <% end -%>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+
+        <% end %>
+      </div>
+
+
+
+
+
     </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= render "devise/shared/links" %><!-- end card-->
   </div>
-<% end %>
 
-<%= render "devise/shared/links" %>
+
+</div>
+
