@@ -2,18 +2,15 @@ Rails.application.routes.draw do
 
 
 
+  resources :learning_records
   get 'study/center'
-
-  get '/lesson_center', to: 'lesson_records#user', as: 'lesson_center'
-  resources :lesson_records
+  get 'study/learn/:id', to: 'study#learn', as: 'study_learn'
 
 
 
-  #to register lesson with user
-  resources :lessons
+
+
   resources :chapter_words
-
-
 
   post '/chapter/:id/add_words', to: 'chapters#add_words', as: 'add_chapter_words'
   get '/chapter/learn/:id', to: 'chapters#learn', as: 'chapter_learn'
@@ -24,8 +21,6 @@ Rails.application.routes.draw do
 
   root to: 'home#index'
 
-
-  get '/tests/launch/:id', to: 'tests#launch', as: 'launch_test'
 
 
   get '/libraries/list', to: 'libraries#list', as: 'list_libraries'

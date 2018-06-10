@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Chapter:</strong>
+  <%= @learning_record.chapter_id %>
+</p>
+
+<p>
+  <strong>Word:</strong>
+  <%= @learning_record.word_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @learning_record.user_id %>
+</p>
+
+<%= link_to 'Edit', edit_learning_record_path(@learning_record) %> |
+<%= link_to 'Back', learning_records_path %>

@@ -11,3 +11,11 @@
     height: 50px;
     margin-left: 15px;
 }
+
+.word-demo{
+    font-size: 70px;
+}
+
+.character{
+    color:grey;
+}

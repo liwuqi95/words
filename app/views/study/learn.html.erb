@@ -1,0 +1,125 @@
+<div class="row">
+  <div class="col-xl-12">
+    <div class="breadcrumb-holder">
+      <h1 class="main-title float-left"><%= @chapter.full_text %></h1>
+      <ol class="breadcrumb float-right">
+        <li class="breadcrumb-item">   <%= link_to home_index_path do %>
+              主页
+
+          <% end %></li>
+        <li class="breadcrumb-item active">课程中心</li>
+        <li class="breadcrumb-item active"><%= @chapter.full_text %></li>
+      </ol>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>
+
+
+
+<div class="row">
+
+  <div class="col-xs-12 col-sm-12">
+    <div class="card mb-3">
+      <div class="card-header">
+        <h3>学习进度</h3>
+      </div>
+
+      <div class="card-body">
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped progress-xs bg-primary" role="progressbar" style="width: <%=@progress%>%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="95"></div>
+        </div>
+      </div>
+
+    </div><!-- end card-->
+  </div>
+
+  <div class="col-md-12">
+    <% unless @finish %>
+        <div class="card border-light mb-3">
+          <div class="card-header">
+            <h3>单词卡</h3>
+          </div>
+
+          <div class="card-body text-primary text-center">
+
+            <h1 class="card-title word-demo">
+
+              <div class="pull-left">
+                <a role="button" href="#" id="play-sound" style="color:inherit"><i class="fa fa-volume-up "></i></a>
+              </div>
+
+
+              <%= @current_word.word + @current_word.id.to_s %></h1>
+
+            <div class="pull-right">
+              <% @current_word.word_meanings.each do |meaning| %>
+
+                  <button type="button" class="btn btn-outline-primary">
+                    <%= meaning.meaning %> </button> &nbsp;
+                  <% if meaning.character != '无' %>
+                      <button type="button" class="btn btn-outline-info"> <%= meaning.character %></button>
+                  <% end %>
+              <% end %>
+            </div>
+
+          </div>
+          <div class="card-footer text-muted">
+
+            <% if @current_index > 0 %>
+                <%= link_to study_learn_path({word_id: @all_words[@current_index - 1]}), class: 'btn btn-primary' do %>
+                    <span class="btn-label btn-label"><i class="fa fa-arrow-left"></i></span>上一个
+                <% end %>
+            <% end %>
+
+
+            <% if @current_index < @all_words.size - 1 %>
+                <div class=" pull-right">
+                  <%= link_to study_learn_path({word_id: @all_words[@current_index + 1]}), class: 'btn btn-primary' do %>
+                      下一个<span class="btn-label btn-label-right"><i class="fa fa-arrow-right"></i></span>
+                  <% end %></div>
+
+            <% else %>
+                <div class=" pull-right">
+                  <%= link_to study_learn_path(@chapter), class: 'btn btn-primary' do %>
+                      下一个<span class="btn-label btn-label-right"><i class="fa fa-arrow-right"></i></span>
+                  <% end %></div>
+            <% end %>
+          </div>
+        </div>
+
+    <% else %>
+        <div class="card border-light mb-3">
+          <div class="card-header">
+            <h3>单词卡</h3>
+          </div>
+
+          <div class="card-body text-primary text-center">
+            你已经学完所有单词
+
+          </div>
+
+          <div class="card-footer text-muted">
+
+            <%= link_to '返回课程中心', study_center_path, class: 'btn btn-primary' %>
+
+            <div class=" pull-right">
+              <%= link_to '重新学习', study_learn_path({word_id: @all_words[0]}), class: 'btn btn-primary' %>
+            </div>
+          </div>
+        </div>
+
+    <% end %>
+  </div>
+
+
+</div>
+
+
+<script>
+    $('#play-sound').click(function () {
+        var words = new SpeechSynthesisUtterance('<%= @current_word.word%>');
+        words.lang = 'en-GB';
+        window.speechSynthesis.speak(words);
+    })
+</script>
