@@ -26,17 +26,18 @@
               <% end -%>
             </div>
             <div class="text-center">
-            <button type="submit" class="btn btn-info">登录</button>
+              <button type="submit" class="btn btn-info">登录</button>
             </div>
         <% end %>
       </div>
-
-
-
-
-
     </div>
-    <%= render "devise/shared/links" %><!-- end card-->
+
+    <%= link_to "注册账号", new_registration_path(resource_name) %>
+
+    <div class="pull-right">
+      <%= link_to "忘记密码？", new_password_path(resource_name) %>
+    </div>
+
   </div>
 
 
