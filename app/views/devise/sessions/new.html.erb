@@ -1,10 +1,15 @@
 <div class="row">
 
   <div class="col-xs-12 col-sm-12 col-md-4 offset-md-3" style="margin-top: 10%">
-    <h2 class="text-center"><strong>智能</strong>记忆</h2>
+
     <br>
     <div class="card mb-3">
+
+      <div class="card-header">
+        <h2 class="text-center"><strong>智能</strong>记忆</h2>
+      </div>
       <div class="card-body">
+
 
         <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
             <div class="form-group">
@@ -24,17 +29,20 @@
               <% end -%>
             </div>
             <div class="text-center">
-              <button type="submit" class="btn btn-info">登录</button>
+              <button type="submit" class="btn btn-info">&nbsp;登录&nbsp;</button>
             </div>
         <% end %>
       </div>
+      <div class="card-footer text-muted">
+        <%= link_to "注册账号", new_registration_path(resource_name) %>
+
+        <div class="pull-right">
+          <%= link_to "忘记密码？", new_password_path(resource_name) %>
+        </div>
+      </div>
     </div>
 
-    <%= link_to "注册账号", new_registration_path(resource_name) %>
 
-    <div class="pull-right">
-      <%= link_to "忘记密码？", new_password_path(resource_name) %>
-    </div>
 
   </div>
 
