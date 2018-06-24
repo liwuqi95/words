@@ -1,0 +1,25 @@
+<div class="text-center">
+  <h1><%= @index %></h1>
+</div>
+
+<% if @index != 0 %>
+    <%= link_to study_c_word_path({word: (@index - 1).to_s}), class: 'btn btn-primary' do %>
+        <span class="btn-label btn-label"><i class="fa fa-arrow-left"></i></span>上一个
+    <% end %>
+<% end %>
+
+<% if @index < @words.size %>
+    <div class=" pull-right">
+      <%= link_to study_c_word_path({word: (@index + 1).to_s}), class: 'btn btn-primary' do %>
+          下一个<span class="btn-label btn-label-right"><i class="fa fa-arrow-right"></i></span>
+      <% end %>
+    </div>
+
+<% end %>
+
+<script>
+    var words = new SpeechSynthesisUtterance('<%= @word %>');
+    words.lang = 'zh-CN';
+    words.rate = 0.7;
+    window.speechSynthesis.speak(words);
+</script>

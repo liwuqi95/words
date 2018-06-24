@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   get 'study/learn/:id', to: 'study#learn', as: 'study_learn'
 
 
+  get '/study/c_word', to: 'study#c_word', as: 'study_c_word'
+
+
 
 
 
