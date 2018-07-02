@@ -50,7 +50,19 @@
               </div>
 
 
-              <%= @current_word.word %></h1>
+              <% colors = ['#0f9df7', '#1bb99a', '#ff5d48', '#3db9dc', '#f1b53d'].shuffle() %>
+
+              <% t_word = !@current_word.separate || @current_word.separate == '' ? @current_word.word : @current_word.separate %>
+
+              <% t_word.split(' ').each_with_index do |word, i| %>
+
+
+                  <div style=" color: <%= colors[i % 5] %>; display:inline-block">
+                    <%= word %></div>
+
+              <% end %>
+
+            </h1>
 
             <div class="pull-right">
               <% @current_word.word_meanings.each do |meaning| %>
@@ -115,17 +127,41 @@
 
 </div>
 
+<script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+<script src="/js/playsound.js"></script>
 
 <script>
-    var play = function () {
-        var words = new SpeechSynthesisUtterance('<%= @current_word.word%>');
-        words.lang = 'en-GB';
-        words.rate = 0.6;
-        window.speechSynthesis.speak(words);
+    var play_word = function () {
+        var appKey = '124d21e4ca899cb4';
+        var key = 'yp91G06lpXa1iSoSKUbEoOoXG6n5P39N'; //注意：暴露appSecret，有被盗用造成损失的风险
+        var salt = (new Date).getTime();
+        var query = '<%= @current_word.word%>';
+        var from = 'en';
+        var to = 'en';
+        var str1 = appKey + query + salt + key;
+        var sign = md5(str1);
+        $.ajax({
+            url: 'http://openapi.youdao.com/api',
+            type: 'post',
+            dataType: 'jsonp',
+            data: {
+                q: query,
+                appKey: appKey,
+                salt: salt,
+                from: from,
+                to: to,
+                sign: sign
+            },
+            success: function (data) {
+                $.playSound(data.basic["uk-speech"])
+            }
+        });
     };
 
-    $('#play-sound').click(function () { play();});
+    $('#play-sound').click(function () {
+        play_word();
+    });
 
-    play();
+    play_word();
 
 </script>

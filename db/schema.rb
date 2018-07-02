@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20180630012736) do
     t.datetime "updated_at", null: false
     t.string "phonetic"
     t.string "seperate"
+    t.string "separate"
   end
 
 end
