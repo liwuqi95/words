@@ -57,7 +57,7 @@
               <% t_word.split(' ').each_with_index do |word, i| %>
 
 
-                  <div style=" color: <%= colors[i % 5] %>; display:inline-block; margin-left:-15px">
+                  <div style=" color: <%= colors[i % 5] %>; display:inline-block; margin-left:-15px; font-size:200% " >
                     <%= word %></div>
 
               <% end %>
@@ -67,7 +67,7 @@
             <div class="pull-right">
               <% @current_word.word_meanings.each do |meaning| %>
 
-                  <button type="button" class="btn btn-outline-primary">
+                  <button type="button" class="btn btn-success" style="font-size: 150%">
                     <%= meaning.meaning %> </button> &nbsp;
                   <% if meaning.character != '无' %>
                       <button type="button" class="btn btn-outline-info"> <%= meaning.character %></button>
