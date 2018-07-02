@@ -117,9 +117,15 @@
 
 
 <script>
-    $('#play-sound').click(function () {
+    var play = function () {
         var words = new SpeechSynthesisUtterance('<%= @current_word.word%>');
         words.lang = 'en-GB';
+        words.rate = 0.6;
         window.speechSynthesis.speak(words);
-    })
+    };
+
+    $('#play-sound').click(function () { play();});
+
+    play();
+
 </script>

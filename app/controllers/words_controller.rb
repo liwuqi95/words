@@ -24,7 +24,6 @@ class WordsController < ApplicationController
 
   # GET /words/1/edit
   def edit
-    @word.word_meanings.build
   end
 
   # POST /words
@@ -75,6 +74,6 @@ class WordsController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def word_params
-    params.require(:word).permit(:word, :phonetic ,word_meanings_attributes: [:meaning, :character])
+    params.require(:word).permit(:word, :phonetic ,word_meanings_attributes: [:meaning, :character, :seperate])
   end
 end
