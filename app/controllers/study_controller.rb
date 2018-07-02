@@ -5,8 +5,9 @@ class StudyController < ApplicationController
 
     @chapters_registered = Chapter.all
 
-
   end
+
+
 
   def learn
 
