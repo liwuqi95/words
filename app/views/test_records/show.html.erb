@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Word:</strong>
+  <%= @test_record.word_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @test_record.user_id %>
+</p>
+
+<p>
+  <strong>Chapter:</strong>
+  <%= @test_record.chapter_id %>
+</p>
+
+<p>
+  <strong>Correct:</strong>
+  <%= @test_record.correct %>
+</p>
+
+<%= link_to 'Edit', edit_test_record_path(@test_record) %> |
+<%= link_to 'Back', test_records_path %>

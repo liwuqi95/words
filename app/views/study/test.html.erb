@@ -1,0 +1,111 @@
+<div class="row">
+  <div class="col-xl-12">
+    <div class="breadcrumb-holder">
+      <h1 class="main-title float-left"><%= @chapter.full_text %>  - 测试</h1>
+      <ol class="breadcrumb float-right">
+        <li class="breadcrumb-item">   <%= link_to home_index_path do %>
+              主页
+
+          <% end %></li>
+        <li class="breadcrumb-item active">课程中心</li>
+        <li class="breadcrumb-item active"><%= @chapter.full_text %></li>
+      </ol>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+
+  <div class="col-xs-12 col-sm-12">
+    <div class="card mb-3">
+      <div class="card-header">
+        <h3>学习进度</h3>
+      </div>
+
+      <div class="card-body">
+        <div class="progress">
+          <div class="progress-bar progress-bar-striped progress-xs bg-primary" role="progressbar" style="width: <%=100 * @words_passed.size.to_f / @total_words_count.to_f%>%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="95"></div>
+        </div>
+      </div>
+
+    </div><!-- end card-->
+  </div>
+
+
+  <div class="col-xs-12 col-sm-12">
+    <div class="card mb-3">
+      <div class="card-header">
+        <h3>单词卡</h3>
+      </div>
+      <div class="card-body">
+
+        <% @current_word.word_meanings.each do |meaning| %>
+            <button class="btn btn-success" style="font-size: 150%">
+              <%= meaning.meaning %> <%= meaning.character %>
+            </button>
+        <% end %>
+
+
+        <%= form_with(model: @test_record, remote:true) do |form| %>
+            <% if @test_record.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(test_record.errors.count, "error") %> prohibited this test_record from being
+                    saved:</h2>
+
+                  <ul>
+                    <% @test_record.errors.full_messages.each do |message| %>
+                        <li><%= message %></li>
+                    <% end %>
+                  </ul>
+                </div>
+            <% end %>
+
+            <%= form.hidden_field :word, value: @current_word.word %>
+            <%= form.hidden_field :word_id, value: @current_word.id %>
+            <%= form.hidden_field :user_id, value: current_user.id %>
+            <%= form.hidden_field :chapter_id, value: @chapter.id %>
+
+
+
+            <div class="text-center input-answer-box">
+              <input style="display:none">
+              <%= form.text_field :answer, class: 'input-answer', autocomplete:"off", autofocus:'on', autocorrect:false ,spellcheck:"false"%>
+
+            </div>
+            <div class="pull-right">
+              <%= form.submit '提交', class:'btn btn-danger btn-lg', id:'submit-answer' %>
+            </div>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+
+    $( document ).ready(function() {
+
+
+        $('#submit-answer').click(function(){
+            if($("input[name='test_record[word]']").val().toLowerCase() === $("input[name='test_record[answer]']").val().toLowerCase()){
+                swal("回答正确!", '将在2秒后，测试下个单词...', "success");
+                window.setTimeout(function () {
+                    location.href = "<%= study_test_path %>";
+                }, 2000);
+            }
+            else{
+                swal("回答错误! 正确答案为 <%= @current_word.word %>", '将在2秒后，测试下个单词...', "error");
+                window.setTimeout(function () {
+                    location.href = "<%= study_test_path %>";
+                }, 2000);
+            }
+
+        });
+
+
+    });
+
+
+    </script>

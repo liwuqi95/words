@@ -27,7 +27,7 @@
 
       <div class="card-body">
         <div class="progress">
-          <div class="progress-bar progress-bar-striped progress-xs bg-primary" role="progressbar" style="width: <%=@progress%>%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="95"></div>
+          <div class="progress-bar progress-bar-striped progress-xs bg-primary" role="progressbar" style="width: <%=100 * @current_index.to_f / @all_words.size.to_f%>%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="95"></div>
         </div>
       </div>
 
@@ -35,7 +35,7 @@
   </div>
 
   <div class="col-md-12">
-    <% unless @finish %>
+    <% unless @current_index == @all_words.size - 1 %>
         <div class="card border-light mb-3">
           <div class="card-header">
             <h3>单词卡</h3>
@@ -61,7 +61,6 @@
                     <%= word %></div>
 
               <% end %>
-
             </h1>
 
             <div class="pull-right">
@@ -123,9 +122,8 @@
 
     <% end %>
   </div>
-
-
 </div>
+
 
 <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
 <script src="/js/playsound.js"></script>

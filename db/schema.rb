@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180630012736) do
+ActiveRecord::Schema.define(version: 20180702135207) do
 
   create_table "chapter_words", force: :cascade do |t|
     t.integer "chapter_id"
@@ -39,6 +39,16 @@ ActiveRecord::Schema.define(version: 20180630012736) do
     t.datetime "updated_at", null: false
     t.integer "version", default: 0, null: false
     t.string "book"
+  end
+
+  create_table "test_records", force: :cascade do |t|
+    t.integer "word_id"
+    t.integer "user_id"
+    t.integer "chapter_id"
+    t.string "answer"
+    t.boolean "correct"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

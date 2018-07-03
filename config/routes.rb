@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
 
 
-
+  resources :test_records
+  get 'learning_records/destory_all', to: 'learning_records#destroy_all'
   resources :learning_records
   get 'study/center'
+  get 'study/test/:id', to: 'study#test', as: 'study_test'
   get 'study/learn/:id', to: 'study#learn', as: 'study_learn'
 
 
