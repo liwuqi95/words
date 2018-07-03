@@ -25,7 +25,7 @@
 
       <div class="card-body">
         <div class="progress">
-          <div class="progress-bar progress-bar-striped progress-xs bg-primary" role="progressbar" style="width: <%=100 * @words_passed.size.to_f / @total_words_count.to_f%>%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="95"></div>
+          <div class="progress-bar progress-bar-striped progress-xs <%= @not_touched_words.size == 0 ? 'bg-danger' : 'bg-primary' %>" role="progressbar" style="width: <%=100 * @progress%>%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="95"></div>
         </div>
       </div>
 
@@ -40,55 +40,73 @@
       </div>
       <div class="card-body">
 
-        <div class="pull-left">
-          <a class="btn btn-outline-primary" role="button" href="#" id="play-sound"><i class="fa fa-volume-up fa-2x "></i></a>
-          &nbsp;
-        </div>
+        <% if @current_word %>
 
-        <% @current_word.word_meanings.each do |meaning| %>
-            <button class="btn btn-success" style="font-size: 150%">
-              <%= meaning.meaning %>
-            </button>
-            <button class="btn btn-outline-success" style="font-size: 150%">
-              <%= meaning.character %></button>
-        <% end %>
+            <div class="pull-left">
+              <a class="btn btn-outline-primary" role="button" href="#" id="play-sound"><i class="fa fa-volume-up fa-2x "></i></a>
+              &nbsp;
+            </div>
+
+            <% @current_word.word_meanings.each do |meaning| %>
+                <button class="btn btn-success" style="font-size: 150%">
+                  <%= meaning.meaning %>
+                </button>
+                <button class="btn btn-outline-success" style="font-size: 150%">
+                  <%= meaning.character %></button>
+            <% end %>
 
 
-        <%= form_with(model: @test_record, remote:true) do |form| %>
-            <% if @test_record.errors.any? %>
-                <div id="error_explanation">
-                  <h2><%= pluralize(test_record.errors.count, "error") %> prohibited this test_record from being
-                    saved:</h2>
+            <%= form_with(model: @test_record, remote: true) do |form| %>
+                <% if @test_record.errors.any? %>
+                    <div id="error_explanation">
+                      <h2><%= pluralize(test_record.errors.count, "error") %> prohibited this test_record from being
+                        saved:</h2>
 
-                  <ul>
-                    <% @test_record.errors.full_messages.each do |message| %>
-                        <li><%= message %></li>
-                    <% end %>
-                  </ul>
+                      <ul>
+                        <% @test_record.errors.full_messages.each do |message| %>
+                            <li><%= message %></li>
+                        <% end %>
+                      </ul>
+                    </div>
+                <% end %>
+
+                <%= form.hidden_field :word, value: @current_word.word %>
+                <%= form.hidden_field :word_id, value: @current_word.id %>
+                <%= form.hidden_field :user_id, value: current_user.id %>
+                <%= form.hidden_field :chapter_id, value: @chapter.id %>
+
+
+
+                <div class="text-center input-answer-box">
+                  <input style="display:none">
+                  <%= form.text_field :answer, class: 'input-answer', autocomplete: "off", autofocus: 'on', autocorrect: false, spellcheck: "false" %>
+
+                </div>
+                <div class="pull-right">
+                  <%= form.submit '提交', class: 'btn btn-danger btn-lg', id: 'submit-answer' %>
                 </div>
             <% end %>
 
-            <%= form.hidden_field :word, value: @current_word.word %>
-            <%= form.hidden_field :word_id, value: @current_word.id %>
-            <%= form.hidden_field :user_id, value: current_user.id %>
-            <%= form.hidden_field :chapter_id, value: @chapter.id %>
+        <% else %>
+            你已经学完所有单词
 
 
-
-            <div class="text-center input-answer-box">
-              <input style="display:none">
-              <%= form.text_field :answer, class: 'input-answer', autocomplete:"off", autofocus:'on', autocorrect:false ,spellcheck:"false"%>
-
-            </div>
-            <div class="pull-right">
-              <%= form.submit '提交', class:'btn btn-danger btn-lg', id:'submit-answer' %>
-            </div>
         <% end %>
 
       </div>
+      <%unless @current_word %>
+      <div class="card-footer text-muted">
+
+        <%= link_to '返回课程中心', study_center_path, class: 'btn btn-primary' %>
+
+      </div>
+      <%end%>
+
     </div>
   </div>
 </div>
+
+
 
 
 <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
@@ -96,17 +114,17 @@
 
 <script>
 
-    $( document ).ready(function() {
+    $(document).ready(function () {
+        <% if @current_word %>
 
-
-        $('#submit-answer').click(function(){
-            if($("input[name='test_record[word]']").val().toLowerCase() === $("input[name='test_record[answer]']").val().toLowerCase()){
+        $('#submit-answer').click(function () {
+            if ($("input[name='test_record[word]']").val().toLowerCase() === $("input[name='test_record[answer]']").val().toLowerCase()) {
                 swal("回答正确!", '将在1秒后，自动测试下个单词...', "success");
                 window.setTimeout(function () {
                     location.href = "<%= study_test_path %>";
                 }, 800);
             }
-            else{
+            else {
                 swal("回答错误! 正确答案为 <%= @current_word.word %>", '将在2秒后，自动测试下个单词...', "error");
                 window.setTimeout(function () {
                     location.href = "<%= study_test_path %>";
@@ -149,8 +167,9 @@
 
         play_word();
 
+        <%end%>
 
     });
 
 
-    </script>
+</script>

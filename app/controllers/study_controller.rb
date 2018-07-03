@@ -39,14 +39,19 @@ class StudyController < ApplicationController
     @words_passed = @all_words.select{|word| word.passed( current_user.id)}
 
     if @not_touched_words.size != 0
+
       @all_words = @not_touched_words
+
     else
 
       @all_words = @all_words - @words_passed
 
       @all_words = @all_words.sort_by{|word| word.test_count(current_user.id)}
       @all_words = @all_words.sort_by{|word| word.test_recent( current_user.id)}
+
     end
+
+    @progress = @words_passed.size.to_f / @total_words_count.to_f
 
     @current_word = @all_words.first
 

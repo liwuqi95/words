@@ -61,6 +61,16 @@ class TestRecordsController < ApplicationController
     end
   end
 
+  def destroy_all
+    TestRecord.all.each do |test_record|
+      test_record.destroy
+    end
+
+    respond_to do |format|
+      format.html {redirect_back(fallback_location: root_path)}
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_test_record

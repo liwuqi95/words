@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-
+  get 'test_records/destory_all', to: 'test_records#destroy_all'
   resources :test_records
   get 'learning_records/destory_all', to: 'learning_records#destroy_all'
   resources :learning_records
