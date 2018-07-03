@@ -34,9 +34,9 @@ class StudyController < ApplicationController
 
     @total_words_count = @all_words.size
 
-    @not_touched_words = @all_words.select{|word| word.test_recent(@chapter.id, current_user.id) == nil}
+    @not_touched_words = @all_words.select{|word| word.test_recent( current_user.id) == nil}
 
-    @words_passed = @all_words.select{|word| word.passed(@chapter.id , current_user.id)}
+    @words_passed = @all_words.select{|word| word.passed( current_user.id)}
 
     if @not_touched_words.size != 0
       @all_words = @not_touched_words
@@ -44,8 +44,8 @@ class StudyController < ApplicationController
 
       @all_words = @all_words - @words_passed
 
-      @all_words = @all_words.sort_by{|word| word.test_count(@chapter.id, current_user.id)}
-      @all_words = @all_words.sort_by{|word| word.test_recent(@chapter.id, current_user.id)}
+      @all_words = @all_words.sort_by{|word| word.test_count(current_user.id)}
+      @all_words = @all_words.sort_by{|word| word.test_recent( current_user.id)}
     end
 
     @current_word = @all_words.first

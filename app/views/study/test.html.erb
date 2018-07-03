@@ -101,13 +101,13 @@
 
         $('#submit-answer').click(function(){
             if($("input[name='test_record[word]']").val().toLowerCase() === $("input[name='test_record[answer]']").val().toLowerCase()){
-                swal("回答正确!", '将在2秒后，测试下个单词...', "success");
+                swal("回答正确!", '将在1秒后，自动测试下个单词...', "success");
                 window.setTimeout(function () {
                     location.href = "<%= study_test_path %>";
-                }, 2000);
+                }, 800);
             }
             else{
-                swal("回答错误! 正确答案为 <%= @current_word.word %>", '将在2秒后，测试下个单词...', "error");
+                swal("回答错误! 正确答案为 <%= @current_word.word %>", '将在2秒后，自动测试下个单词...', "error");
                 window.setTimeout(function () {
                     location.href = "<%= study_test_path %>";
                 }, 2000);
