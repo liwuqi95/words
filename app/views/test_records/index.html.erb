@@ -16,10 +16,10 @@
   <tbody>
     <% @test_records.each do |test_record| %>
       <tr>
-        <td><%= test_record.word_id %></td>
-        <td><%= test_record.user_id %></td>
-        <td><%= test_record.chapter_id %></td>
-        <td><%= test_record.correct %></td>
+        <td><%= test_record.word.word %></td>
+        <td><%= test_record.user.email %></td>
+        <td><%= test_record.chapter.full_text %></td>
+        <td><%= test_record.correct ? '正确','错误' %></td>
         <td><%= link_to 'Show', test_record %></td>
         <td><%= link_to 'Edit', edit_test_record_path(test_record) %></td>
         <td><%= link_to 'Destroy', test_record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
