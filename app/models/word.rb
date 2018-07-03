@@ -36,7 +36,7 @@ class Word < ApplicationRecord
   end
 
   def passed( user)
-     self.test_accuracy( user) > 0.67 && self.test_count( user) >= 3
+     self.test_accuracy( user) > 0.66 && self.test_count( user) >= 2
   end
 
 
