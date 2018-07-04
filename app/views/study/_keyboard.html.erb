@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="card mb-3">
+    <div class="card-body">
+      <div class="keyboard text-center">
+
+        <% ('a' .. 'z').to_a.each do |letter| %>
+
+            <div class="key">
+
+              <button class="btn btn-primary"><%= letter %></button>
+
+            </div>
+        <% end %>
+        <div class="key">
+          <button class="btn btn-primary">'</button>
+        </div>
+
+        <div class="key">
+          <button class="btn btn-primary">空格</button>
+        </div>
+
+        <div class="key">
+          <button class="btn btn-primary">删除</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('.key').click(function(){
+
+            input_val = $('.input-answer').val() ?  $('.input-answer').val() : '';
+
+
+            button_val = $(this).text().trim();
+
+            if(button_val === '空格')
+                input_val += ' ';
+            else if(button_val === '删除'){
+                input_val = input_val.length === 0 ? '' : input_val.substring(0, input_val.length-1);
+            }else
+                input_val += button_val;
+
+
+            $('.input-answer').val(input_val);
+
+
+        })
+
+    })
+
+
+</script>

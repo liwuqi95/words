@@ -77,6 +77,8 @@
 
 
 
+
+
                 <div class="text-center input-answer-box">
                   <input style="display:none">
                   <%= form.text_field :answer, class: 'input-answer', autocomplete: "off", autofocus: 'on', autocorrect: false, spellcheck: "false" %>
@@ -84,6 +86,10 @@
                 </div>
                 <div class="pull-right">
                   <%= form.submit '提交', class: 'btn btn-danger btn-lg', id: 'submit-answer' %>
+                </div>
+                <div class="col-md-12">
+
+
                 </div>
             <% end %>
 
@@ -105,7 +111,10 @@
 </div>
 
 
+<% if @current_word %>
+    <%= render 'study/keyboard' %>
 
+<% end %>
 
 <script src="https://cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
 <script src="/js/playsound.js"></script>
