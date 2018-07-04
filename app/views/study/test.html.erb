@@ -55,7 +55,7 @@
                   <%= meaning.character %></button>
             <% end %>
 
-            
+
             <%= form_with(model: @test_record, remote: true) do |form| %>
                 <% if @test_record.errors.any? %>
                     <div id="error_explanation">
@@ -83,7 +83,6 @@
 
                 </div>
                 <div class="pull-right">
-                  <button class="btn btn-primary btn-lg" id="dont-know"> 不会</button>
                   <%= form.submit '提交', class: 'btn btn-danger btn-lg', id: 'submit-answer' %>
                 </div>
             <% end %>
