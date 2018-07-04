@@ -20,7 +20,7 @@
   <div class="col-xs-12 col-sm-12">
     <div class="card mb-3">
       <div class="card-header">
-        <h3>学习进度 (还剩<%=@total_words_count - @words_passed.size %>个）</h3>
+        <h3>学习进度 (还剩<%= @total_words_count - @words_passed.size %>个）</h3>
       </div>
 
       <div class="card-body">
@@ -55,7 +55,7 @@
                   <%= meaning.character %></button>
             <% end %>
 
-
+            
             <%= form_with(model: @test_record, remote: true) do |form| %>
                 <% if @test_record.errors.any? %>
                     <div id="error_explanation">
@@ -83,24 +83,23 @@
 
                 </div>
                 <div class="pull-right">
+                  <button class="btn btn-primary btn-lg" id="dont-know"> 不会</button>
                   <%= form.submit '提交', class: 'btn btn-danger btn-lg', id: 'submit-answer' %>
                 </div>
             <% end %>
 
         <% else %>
-            你已经学完所有单词
+            你已经测试完所有单词
 
 
         <% end %>
 
       </div>
-      <%unless @current_word %>
-      <div class="card-footer text-muted">
-
-        <%= link_to '返回课程中心', study_center_path, class: 'btn btn-primary' %>
-
-      </div>
-      <%end%>
+      <% unless @current_word %>
+          <div class="card-footer text-muted">
+            <%= link_to '返回课程中心', study_center_path, class: 'btn btn-primary' %>
+          </div>
+      <% end %>
 
     </div>
   </div>

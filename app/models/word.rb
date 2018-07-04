@@ -14,14 +14,14 @@ class Word < ApplicationRecord
   validates :word, presence: true, uniqueness: true
 
 
-  def test_accuracy( user)
-    total_rocords =  self.test_records.user(user)
+  def test_accuracy(user)
+    total_rocords   = self.test_records.user(user)
     correct_records = total_rocords.correct(true)
     (total_rocords.size == 0) ? 0 : correct_records.size.to_f / total_rocords.size.to_f
   end
 
-  def test_recent( user)
-    total_rocords =  self.test_records.user(user)
+  def test_recent(user)
+    total_rocords = self.test_records.user(user)
 
     recent_record = total_rocords.order(created_at: :desc).first
 
@@ -29,16 +29,18 @@ class Word < ApplicationRecord
 
   end
 
-  def test_count( user)
-    total_rocords =  self.test_records.user(user)
+  def test_count(user)
+    total_rocords = self.test_records.user(user)
 
     total_rocords.size
   end
 
-  def passed( user)
-     self.test_accuracy( user) > 0.66 && self.test_count( user) >= 1
-  end
+  def passed(user)
 
+    total_rocords = self.test_records.user(user).order(created_at: :desc)
+    self.test_accuracy(user) == 1.0 || (total_rocords.size >= 2 && total_rocords.first.correct && total_rocords.second.correct)
+
+  end
 
 
 end
