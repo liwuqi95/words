@@ -38,13 +38,13 @@ class QuizzesController < ApplicationController
           @first_list = QuizRecord.where(:answer => nil).or(QuizRecord.where(:answer => false)).where(:quiz_id => @past_quizzes.first.id)
 
           @first_list.each do |word|
-            QuizRecord.create!(:quiz => @quiz, :word => word.word)
+            QuizRecord.create!(:quiz_id => @quiz.id, :word => word.word.id)
           end
 
           if @past_quizzes.count >= 2
 
             QuizRecord.where(:quiz_id => @past_quizzes[1].id, :answer => [nil, false]).each do |word|
-              QuizRecord.create(:quiz => @quiz, :word => word.word)
+              QuizRecord.create(:quiz_id => @quiz.id, :word_id => word.word.id)
             end
 
           end
