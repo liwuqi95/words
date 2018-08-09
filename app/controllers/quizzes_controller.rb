@@ -50,7 +50,7 @@ class QuizzesController < ApplicationController
 
         else
           ChapterWord.where(:chapter_id => @quiz.chapter_id).each do |word|
-            QuizRecord.create(:quiz => @quiz, :word => word)
+            QuizRecord.create(:quiz => @quiz, :word => word.word)
           end
         end
 
