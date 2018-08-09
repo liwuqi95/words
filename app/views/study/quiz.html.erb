@@ -1,0 +1,200 @@
+<div class="row">
+  <div class="col-xl-12">
+    <div class="breadcrumb-holder">
+      <h1 class="main-title float-left"><%= @chapter.full_text %>  - 测试</h1>
+      <ol class="breadcrumb float-right">
+        <li class="breadcrumb-item">   <%= link_to home_index_path do %>
+              主页
+
+          <% end %></li>
+        <li class="breadcrumb-item active">课程中心</li>
+        <li class="breadcrumb-item active"><%= @chapter.full_text %></li>
+      </ol>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>
+
+<% if @quizzes %>
+
+    <div class="row">
+
+      <div class="col-xs-12 col-sm-12">
+        <div class="card mb-3">
+          <div class="card-header">
+            <h3 class="pull-left">测试记录 (<%= @quizzes.count %>)</h3>
+            <div class="pull-right">
+              <%= button_to '开始新测试', {:controller => "quizzes", :action => "create", :quiz => {chapter_id: @chapter.id, user_id: current_user.id}}, class: 'btn btn-primary', :method => :post %>
+            </div>
+          </div>
+
+          <div class="card-body">
+
+            <div class="table-responsive">
+              <table id="words-list" class="table table-bordered table-hover display">
+                <thead>
+                <tr>
+                  <th>次数</th>
+
+                  <th>单词数</th>
+                  <th>正确率</th>
+
+                  <th>进度</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <%count = @quizzes.size  %>
+
+                <% @quizzes.each do |quiz| %>
+                    <tr>
+                      <td>第 <%=count%>  次</td>
+                      <%count = count - 1%>
+                      <td><%= QuizRecord.where(:quiz_id => quiz.id).count %></td>
+
+                      <td><%= QuizRecord.where(:quiz_id => quiz.id, answer: true).count.to_f / QuizRecord.where(:quiz_id => quiz.id).count.to_f  %></td>
+                      <% if QuizRecord.where(:quiz_id => quiz.id, answer: nil).count == 0 %>
+                          <td>
+                            <button class="btn btn-success btn-sm"> 完成</button></td>
+                      <% else %>
+                          <td><%= link_to '测试', study_quiz_path(@chapter, :quiz_id => quiz), class: 'btn btn-primary btn-sm' %></td>
+                      <% end %>
+
+
+
+                      <td><%= link_to '查看', quiz %></td>
+                      <td><%= link_to '删除', quiz, method: :delete, data: {confirm: 'Are you sure?'} %></td>
+                    </tr>
+                <% end %>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+
+        </div><!-- end card-->
+      </div>
+
+
+    </div>
+
+<% else %>
+    <div class="row">
+
+      <div class="col-xs-12 col-sm-12">
+        <div class="card mb-3">
+          <div class="card-header">
+            <h3 class="pull-left">还剩 (<%= @all_words.count %>) 个</h3>
+          </div>
+          <div class="card-body">
+
+            <% if @current_word %>
+
+                <div class="pull-left">
+                  <a class="btn btn-outline-primary" role="button" href="#" id="play-sound"><i class="fa fa-volume-up fa-2x "></i></a>
+                  &nbsp;
+                </div>
+
+                <% @current_word.word.word_meanings.each do |meaning| %>
+                    <button class="btn btn-success" style="font-size: 150%">
+                      <%= meaning.meaning %>
+                    </button>
+                    <button class="btn btn-outline-success" style="font-size: 150%">
+                      <%= meaning.character %></button>
+                <% end %>
+
+
+                <%= form_with(model: @current_word, remote: true) do |form| %>
+                    <% if @current_word.errors.any? %>
+                        <div id="error_explanation">
+                          <h2><%= pluralize(test_record.errors.count, "error") %> prohibited this test_record from being
+                            saved:</h2>
+
+                          <ul>
+                            <% @current_word.errors.full_messages.each do |message| %>
+                                <li><%= message %></li>
+                            <% end %>
+                          </ul>
+                        </div>
+                    <% end %>
+
+                    <div class="text-center input-answer-box">
+                      <input style="display:none">
+                      <%= form.text_field :answer_text, class: 'input-answer', autocomplete: "off", autofocus: 'on', autocorrect: false, spellcheck: "false" %>
+
+                    </div>
+                    <div class="pull-right">
+                      <%= form.submit '提交', class: 'btn btn-danger btn-lg', id: 'submit-answer' %>
+                    </div>
+                    <div class="col-md-12">
+
+
+                    </div>
+                <% end %>
+
+            <% else %>
+                你已经测试完所有单词
+
+
+            <% end %>
+
+          </div>
+
+        </div><!-- end card-->
+      </div>
+
+
+    </div>
+
+    <% if @current_word %>
+        <%= render 'study/keyboard' %>
+
+    <% end %>
+
+<% end %>
+
+
+
+<script src="/assets/js/md5.js"></script>
+<script src="/js/playsound.js"></script>
+
+<script>
+
+    $(document).ready(function () {
+        <% if @current_word %>
+
+        $('#submit-answer').click(function () {
+            if ('<%= @current_word.word.word.downcase%>' === $("input[name='quiz_record[answer_text]']").val().toLowerCase()) {
+                swal("回答正确!", '将在1秒后，自动测试下个单词...', "success");
+                window.setTimeout(function () {
+                    location.href = "<%= study_quiz_path(@chapter, :quiz_id => params[:quiz_id]) %>";
+                }, 100);
+            }
+            else {
+                swal("回答错误! 正确答案为 <%= @current_word.word.word %>", '将在2秒后，自动测试下个单词...', "error");
+                window.setTimeout(function () {
+                    location.href = "<%= study_quiz_path(@chapter, :quiz_id => params[:quiz_id]) %>";
+                }, 3000);
+            }
+
+        });
+
+        var play_word = function () {
+            var a = new Audio("http://dict.youdao.com/dictvoice?audio=<%= @current_word.word.word%>");
+            a.play();
+        };
+
+        $('#play-sound').click(function () {
+            play_word();
+        });
+
+        play_word();
+
+        <%end%>
+
+    });
+
+
+</script>

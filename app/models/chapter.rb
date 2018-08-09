@@ -2,6 +2,7 @@ class Chapter < ApplicationRecord
   has_many :chapter_words, dependent: :destroy
   has_many :words, through: :chapter_words
   has_many :lessons
+  has_many :quizzes
 
   belongs_to :library
 

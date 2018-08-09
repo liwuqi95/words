@@ -8,7 +8,6 @@ class StudyController < ApplicationController
   end
 
 
-
   def learn
     @chapter = Chapter.find(params[:id])
 
@@ -20,7 +19,7 @@ class StudyController < ApplicationController
 
 
     if LearningRecord.where(:chapter_id => @chapter.id, :user_id => current_user.id, :word_id => @current_word.id).count < 1
-      @LearningRecord =  LearningRecord.new({user_id: current_user.id, chapter_id: @chapter.id, word_id: @current_word.id})
+      @LearningRecord = LearningRecord.new({user_id: current_user.id, chapter_id: @chapter.id, word_id: @current_word.id})
       @LearningRecord.save
     end
 
@@ -34,9 +33,9 @@ class StudyController < ApplicationController
 
     @total_words_count = @all_words.size
 
-    @not_touched_words = @all_words.select{|word| word.test_recent( current_user.id) == nil}
+    @not_touched_words = @all_words.select {|word| word.test_recent(current_user.id) == nil}
 
-    @words_passed = @all_words.select{|word| word.passed( current_user.id)}
+    @words_passed = @all_words.select {|word| word.passed(current_user.id)}
 
     if @not_touched_words.size != 0
 
@@ -46,8 +45,8 @@ class StudyController < ApplicationController
 
       @all_words = @all_words - @words_passed
 
-      @all_words = @all_words.sort_by{|word| word.test_count(current_user.id)}
-      @all_words = @all_words.sort_by{|word| word.test_recent( current_user.id)}
+      @all_words = @all_words.sort_by {|word| word.test_count(current_user.id)}
+      @all_words = @all_words.sort_by {|word| word.test_recent(current_user.id)}
 
     end
 
@@ -56,6 +55,26 @@ class StudyController < ApplicationController
     @current_word = @all_words.first
 
     @test_record = TestRecord.new
+
+  end
+
+  def quiz
+    @chapter = Chapter.find(params[:id])
+
+    if params[:quiz_id]
+
+      @all_words = QuizRecord.where(:quiz_id => params[:quiz_id], :answer => nil)
+
+      @current_word = @all_words.first
+
+
+
+
+    else
+
+      @quizzes = Quiz.where(:chapter_id => @chapter.id, :user_id => current_user.id).order(created_at: :desc)
+    end
+
 
   end
 

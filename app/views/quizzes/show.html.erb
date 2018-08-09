@@ -1,0 +1,57 @@
+<div class="row">
+  <div class="col-xl-12">
+    <div class="breadcrumb-holder">
+      <h1 class="main-title float-left"><%= @quiz.chapter.full_text %>  - 测试</h1>
+      <ol class="breadcrumb float-right">
+        <li class="breadcrumb-item">   <%= link_to home_index_path do %>
+              主页
+
+          <% end %></li>
+        <li class="breadcrumb-item active">课程中心</li>
+        <li class="breadcrumb-item active"><%= @quiz.chapter.full_text %></li>
+      </ol>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+
+  <div class="col-xs-12 col-sm-12">
+    <div class="card mb-3">
+      <div class="card-header">
+        <h3 class="pull-left">单词记录</h3>
+      </div>
+
+      <div class="card-body">
+
+        <div class="table-responsive">
+          <table id="words-list" class="table table-bordered table-hover display">
+            <thead>
+            <tr>
+              <th>单词</th>
+              <th>测试记录</th>
+              <th>测试结果</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <% @quiz.quiz_records.each do |record| %>
+                <tr>
+                  <td><%= record.word.word %></td>
+                  <td><%= record.work ? '已测' : '未测' %></td>
+                  <td><%= record.answer ? '正确' : '错误' %></td>
+                </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+    </div><!-- end card-->
+  </div>
+  <%= link_to '返回测试记录', study_quiz_path(@quiz.chapter), class:'btn btn-primary' %>
+  <%= link_to '开始测试', study_quiz_path(@quiz.chapter, quiz_id: @quiz.id), class:'btn btn-danger' %>
+</div>
+

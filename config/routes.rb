@@ -1,10 +1,13 @@
 Rails.application.routes.draw do
 
+  resources :quiz_records
+  resources :quizzes
   get 'test_records/destory_all', to: 'test_records#destroy_all'
   resources :test_records
   get 'learning_records/destory_all', to: 'learning_records#destroy_all'
   resources :learning_records
   get 'study/center'
+  get 'study/quiz/:id', to: 'study#quiz', as: 'study_quiz'
   get 'study/test/:id', to: 'study#test', as: 'study_test'
   get 'study/learn/:id', to: 'study#learn', as: 'study_learn'
 

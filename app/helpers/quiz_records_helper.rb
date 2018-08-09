@@ -1,0 +1,2 @@
+module QuizRecordsHelper
+end

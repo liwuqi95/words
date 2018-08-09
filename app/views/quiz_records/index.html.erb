@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Quiz Records</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Quiz</th>
+      <th>Word</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @quiz_records.each do |quiz_record| %>
+      <tr>
+        <td><%= quiz_record.quiz_id %></td>
+        <td><%= quiz_record.word_id %></td>
+        <td><%= link_to 'Show', quiz_record %></td>
+        <td><%= link_to 'Edit', edit_quiz_record_path(quiz_record) %></td>
+        <td><%= link_to 'Destroy', quiz_record, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Quiz Record', new_quiz_record_path %>

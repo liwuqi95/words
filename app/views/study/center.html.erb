@@ -22,47 +22,32 @@
     </div>
 
     <div class="card-body">
+      <div class="row">
 
-      <% if @chapters_in_progress %>
+        <% if @chapters_in_progress %>
+            <% @chapters_in_progress.each do |chapter_count| %>
 
+                <% chapter = Chapter.find(chapter_count.first) %>
 
-          <% @chapters_in_progress.each do |chapter_count| %>
+                <div class="col-lg-3 col-md-4 col-sm-6">
+                  <div class="card text-center">
+                    <div class="card-body">
+                      <h4 class="card-title"><%= chapter.full_text %></h4>
 
-              <% chapter = Chapter.find(chapter_count.first) %>
-              <% chapter_progress = 100 * chapter.words.select{|word| word.passed( current_user.id)}.size.to_f /  chapter.words.count.to_f %>
-
-              <div class="col-lg-3 col-md-4 col-sm-6">
-                <div class="card text-center">
-                  <div class="card-body">
-                    <h4 class="card-title"><%= chapter.full_text %></h4>
-                    <p class="card-text">
-
-
-                      <% unless chapter_progress >= 100.0 %>
-                        <div class="progress">
-                          <div class="progress-bar progress-bar-striped progress-xs bg-primary" role="progressbar" style="width: <%= chapter_progress %>%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="95"></div>
-                        </div>
-                      <% else %>
-
-                        <button class="btn-outline-primary">已完成</button>
-
-                       <% end %>
-                    </p>
-
-                    <%= link_to '继续学习', study_learn_path(chapter.id), class:'btn btn-primary'  %>
-                    <%= link_to '开始测试', study_test_path(chapter.id),  class:'btn btn-danger'  %>
+                      <%= link_to '继续学习', study_learn_path(chapter.id), class: 'btn btn-primary' %>
+                      <%= link_to '开始测试', study_quiz_path(chapter.id), class: 'btn btn-danger' %>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-          <% end %>
+            <% end %>
 
 
-      <% else %>
-          <p>还没有正在学习的课程哦～</p>
+        <% else %>
+            <p>还没有正在学习的课程哦～</p>
 
-      <% end %>
-
+        <% end %>
+      </div>
     </div>
   </div><!-- end card-->
 </div>
@@ -76,26 +61,29 @@
     </div>
 
     <div class="card-body">
+      <div class="row">
 
-      <% if @chapters_registered.size > 0 %>
+        <% if @chapters_registered.size > 0 %>
 
-          <% @chapters_registered.each do |chapter| %>
-              <div class="col-md-3 col-sm-6">
-                <div class="card text-center">
-                  <div class="card-body">
-                    <h4 class="card-title"><%= chapter.full_text %></h4>
-                    <p class="card-text">单词学习</p>
+            <% @chapters_registered.each do |chapter| %>
+                <div class="col-md-3 col-sm-6">
+                  <div class="card text-center">
+                    <div class="card-body">
+                      <h4 class="card-title"><%= chapter.full_text %></h4>
+                      <p class="card-text">单词学习</p>
 
-                    <%= link_to '开始课程', study_learn_path(chapter), class: 'btn btn-primary' %>
+                      <%= link_to '开始课程', study_learn_path(chapter), class: 'btn btn-primary' %>
+                    </div>
                   </div>
                 </div>
-              </div>
-          <% end %>
+            <% end %>
 
-      <% else %>
-          <p>还没有已经注册的课程哦，快去联系工作人员添加课程吧～</p>
 
-      <% end %>
+        <% else %>
+            <p>还没有已经注册的课程哦，快去联系工作人员添加课程吧～</p>
+
+        <% end %>
+      </div>
 
     </div>
   </div><!-- end card-->
