@@ -116,7 +116,7 @@
 
             <div class=" pull-right">
               <%= link_to '重新学习', study_learn_path({word_id: @all_words[0]}), class: 'btn btn-primary' %>
-              <%= link_to '开始测试',study_test_path(@chapter.id), class: 'btn btn-danger' %>
+              <%= link_to '开始测试',study_quiz_path(@chapter.id), class: 'btn btn-danger' %>
             </div>
           </div>
         </div>

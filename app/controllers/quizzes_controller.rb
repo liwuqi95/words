@@ -44,14 +44,9 @@ class QuizzesController < ApplicationController
           if @past_quizzes.count >= 2
 
             QuizRecord.where(:quiz_id => @past_quizzes[1].id, :answer => [nil, false]).each do |word|
-
-
-              QuizRecord.create!(:quiz => @quiz, :word => word.word)
-
+              QuizRecord.create(:quiz => @quiz, :word => word.word)
             end
-
           end
-
 
         else
           ChapterWord.where(:chapter_id => @quiz.chapter_id).each do |word|
