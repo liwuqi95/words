@@ -10,5 +10,5 @@ class Library < ApplicationRecord
 
 
 
-  enum version: ['鲁教版','新派少儿英语' ,'应战中考']
+  enum version: ['鲁教版','新派少儿英语' ,'应战中考','人教版']
 end
